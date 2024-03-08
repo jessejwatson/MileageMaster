@@ -1,0 +1,593 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DC78B5702B9BBEB400A8D964 /* MileageMasterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC78B56F2B9BBEB400A8D964 /* MileageMasterApp.swift */; };
+		DC78B5722B9BBEB400A8D964 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC78B5712B9BBEB400A8D964 /* ContentView.swift */; };
+		DC78B5742B9BBEB600A8D964 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC78B5732B9BBEB600A8D964 /* Assets.xcassets */; };
+		DC78B5772B9BBEB600A8D964 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC78B5762B9BBEB600A8D964 /* Preview Assets.xcassets */; };
+		DC78B5812B9BBEB600A8D964 /* MileageMasterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC78B5802B9BBEB600A8D964 /* MileageMasterTests.swift */; };
+		DC78B58B2B9BBEB600A8D964 /* MileageMasterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC78B58A2B9BBEB600A8D964 /* MileageMasterUITests.swift */; };
+		DC78B58D2B9BBEB600A8D964 /* MileageMasterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC78B58C2B9BBEB600A8D964 /* MileageMasterUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DC78B57D2B9BBEB600A8D964 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DC78B5642B9BBEB400A8D964 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DC78B56B2B9BBEB400A8D964;
+			remoteInfo = MileageMaster;
+		};
+		DC78B5872B9BBEB600A8D964 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DC78B5642B9BBEB400A8D964 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DC78B56B2B9BBEB400A8D964;
+			remoteInfo = MileageMaster;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DC78B56C2B9BBEB400A8D964 /* MileageMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MileageMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC78B56F2B9BBEB400A8D964 /* MileageMasterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileageMasterApp.swift; sourceTree = "<group>"; };
+		DC78B5712B9BBEB400A8D964 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		DC78B5732B9BBEB600A8D964 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DC78B5762B9BBEB600A8D964 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DC78B57C2B9BBEB600A8D964 /* MileageMasterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MileageMasterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC78B5802B9BBEB600A8D964 /* MileageMasterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileageMasterTests.swift; sourceTree = "<group>"; };
+		DC78B5862B9BBEB600A8D964 /* MileageMasterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MileageMasterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC78B58A2B9BBEB600A8D964 /* MileageMasterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileageMasterUITests.swift; sourceTree = "<group>"; };
+		DC78B58C2B9BBEB600A8D964 /* MileageMasterUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileageMasterUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DC78B5692B9BBEB400A8D964 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC78B5792B9BBEB600A8D964 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC78B5832B9BBEB600A8D964 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DC78B5632B9BBEB400A8D964 = {
+			isa = PBXGroup;
+			children = (
+				DC78B56E2B9BBEB400A8D964 /* MileageMaster */,
+				DC78B57F2B9BBEB600A8D964 /* MileageMasterTests */,
+				DC78B5892B9BBEB600A8D964 /* MileageMasterUITests */,
+				DC78B56D2B9BBEB400A8D964 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DC78B56D2B9BBEB400A8D964 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DC78B56C2B9BBEB400A8D964 /* MileageMaster.app */,
+				DC78B57C2B9BBEB600A8D964 /* MileageMasterTests.xctest */,
+				DC78B5862B9BBEB600A8D964 /* MileageMasterUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DC78B56E2B9BBEB400A8D964 /* MileageMaster */ = {
+			isa = PBXGroup;
+			children = (
+				DC78B56F2B9BBEB400A8D964 /* MileageMasterApp.swift */,
+				DC78B5712B9BBEB400A8D964 /* ContentView.swift */,
+				DC78B5732B9BBEB600A8D964 /* Assets.xcassets */,
+				DC78B5752B9BBEB600A8D964 /* Preview Content */,
+			);
+			path = MileageMaster;
+			sourceTree = "<group>";
+		};
+		DC78B5752B9BBEB600A8D964 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				DC78B5762B9BBEB600A8D964 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DC78B57F2B9BBEB600A8D964 /* MileageMasterTests */ = {
+			isa = PBXGroup;
+			children = (
+				DC78B5802B9BBEB600A8D964 /* MileageMasterTests.swift */,
+			);
+			path = MileageMasterTests;
+			sourceTree = "<group>";
+		};
+		DC78B5892B9BBEB600A8D964 /* MileageMasterUITests */ = {
+			isa = PBXGroup;
+			children = (
+				DC78B58A2B9BBEB600A8D964 /* MileageMasterUITests.swift */,
+				DC78B58C2B9BBEB600A8D964 /* MileageMasterUITestsLaunchTests.swift */,
+			);
+			path = MileageMasterUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DC78B56B2B9BBEB400A8D964 /* MileageMaster */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC78B5902B9BBEB600A8D964 /* Build configuration list for PBXNativeTarget "MileageMaster" */;
+			buildPhases = (
+				DC78B5682B9BBEB400A8D964 /* Sources */,
+				DC78B5692B9BBEB400A8D964 /* Frameworks */,
+				DC78B56A2B9BBEB400A8D964 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MileageMaster;
+			productName = MileageMaster;
+			productReference = DC78B56C2B9BBEB400A8D964 /* MileageMaster.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DC78B57B2B9BBEB600A8D964 /* MileageMasterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC78B5932B9BBEB600A8D964 /* Build configuration list for PBXNativeTarget "MileageMasterTests" */;
+			buildPhases = (
+				DC78B5782B9BBEB600A8D964 /* Sources */,
+				DC78B5792B9BBEB600A8D964 /* Frameworks */,
+				DC78B57A2B9BBEB600A8D964 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DC78B57E2B9BBEB600A8D964 /* PBXTargetDependency */,
+			);
+			name = MileageMasterTests;
+			productName = MileageMasterTests;
+			productReference = DC78B57C2B9BBEB600A8D964 /* MileageMasterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DC78B5852B9BBEB600A8D964 /* MileageMasterUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC78B5962B9BBEB600A8D964 /* Build configuration list for PBXNativeTarget "MileageMasterUITests" */;
+			buildPhases = (
+				DC78B5822B9BBEB600A8D964 /* Sources */,
+				DC78B5832B9BBEB600A8D964 /* Frameworks */,
+				DC78B5842B9BBEB600A8D964 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DC78B5882B9BBEB600A8D964 /* PBXTargetDependency */,
+			);
+			name = MileageMasterUITests;
+			productName = MileageMasterUITests;
+			productReference = DC78B5862B9BBEB600A8D964 /* MileageMasterUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DC78B5642B9BBEB400A8D964 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					DC78B56B2B9BBEB400A8D964 = {
+						CreatedOnToolsVersion = 15.0.1;
+					};
+					DC78B57B2B9BBEB600A8D964 = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = DC78B56B2B9BBEB400A8D964;
+					};
+					DC78B5852B9BBEB600A8D964 = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = DC78B56B2B9BBEB400A8D964;
+					};
+				};
+			};
+			buildConfigurationList = DC78B5672B9BBEB400A8D964 /* Build configuration list for PBXProject "MileageMaster" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DC78B5632B9BBEB400A8D964;
+			productRefGroup = DC78B56D2B9BBEB400A8D964 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DC78B56B2B9BBEB400A8D964 /* MileageMaster */,
+				DC78B57B2B9BBEB600A8D964 /* MileageMasterTests */,
+				DC78B5852B9BBEB600A8D964 /* MileageMasterUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DC78B56A2B9BBEB400A8D964 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC78B5772B9BBEB600A8D964 /* Preview Assets.xcassets in Resources */,
+				DC78B5742B9BBEB600A8D964 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC78B57A2B9BBEB600A8D964 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC78B5842B9BBEB600A8D964 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DC78B5682B9BBEB400A8D964 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC78B5722B9BBEB400A8D964 /* ContentView.swift in Sources */,
+				DC78B5702B9BBEB400A8D964 /* MileageMasterApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC78B5782B9BBEB600A8D964 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC78B5812B9BBEB600A8D964 /* MileageMasterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC78B5822B9BBEB600A8D964 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC78B58B2B9BBEB600A8D964 /* MileageMasterUITests.swift in Sources */,
+				DC78B58D2B9BBEB600A8D964 /* MileageMasterUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DC78B57E2B9BBEB600A8D964 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DC78B56B2B9BBEB400A8D964 /* MileageMaster */;
+			targetProxy = DC78B57D2B9BBEB600A8D964 /* PBXContainerItemProxy */;
+		};
+		DC78B5882B9BBEB600A8D964 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DC78B56B2B9BBEB400A8D964 /* MileageMaster */;
+			targetProxy = DC78B5872B9BBEB600A8D964 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		DC78B58E2B9BBEB600A8D964 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DC78B58F2B9BBEB600A8D964 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DC78B5912B9BBEB600A8D964 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MileageMaster/Preview Content\"";
+				DEVELOPMENT_TEAM = Z5ZBL6VG32;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jessejwatson.MileageMaster;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DC78B5922B9BBEB600A8D964 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MileageMaster/Preview Content\"";
+				DEVELOPMENT_TEAM = Z5ZBL6VG32;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jessejwatson.MileageMaster;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		DC78B5942B9BBEB600A8D964 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Z5ZBL6VG32;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jessejwatson.MileageMasterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MileageMaster.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MileageMaster";
+			};
+			name = Debug;
+		};
+		DC78B5952B9BBEB600A8D964 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Z5ZBL6VG32;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jessejwatson.MileageMasterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MileageMaster.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MileageMaster";
+			};
+			name = Release;
+		};
+		DC78B5972B9BBEB600A8D964 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Z5ZBL6VG32;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jessejwatson.MileageMasterUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MileageMaster;
+			};
+			name = Debug;
+		};
+		DC78B5982B9BBEB600A8D964 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Z5ZBL6VG32;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jessejwatson.MileageMasterUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MileageMaster;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DC78B5672B9BBEB400A8D964 /* Build configuration list for PBXProject "MileageMaster" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC78B58E2B9BBEB600A8D964 /* Debug */,
+				DC78B58F2B9BBEB600A8D964 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC78B5902B9BBEB600A8D964 /* Build configuration list for PBXNativeTarget "MileageMaster" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC78B5912B9BBEB600A8D964 /* Debug */,
+				DC78B5922B9BBEB600A8D964 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC78B5932B9BBEB600A8D964 /* Build configuration list for PBXNativeTarget "MileageMasterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC78B5942B9BBEB600A8D964 /* Debug */,
+				DC78B5952B9BBEB600A8D964 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC78B5962B9BBEB600A8D964 /* Build configuration list for PBXNativeTarget "MileageMasterUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC78B5972B9BBEB600A8D964 /* Debug */,
+				DC78B5982B9BBEB600A8D964 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DC78B5642B9BBEB400A8D964 /* Project object */;
+}
