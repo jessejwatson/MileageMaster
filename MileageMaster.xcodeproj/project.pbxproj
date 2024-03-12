@@ -7,13 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC2A9DB22BA0351E0018563A /* GeneralSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2A9DB12BA0351E0018563A /* GeneralSettings.swift */; };
+		DC2A9DB42BA04D380018563A /* URLSession+Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2A9DB32BA04D380018563A /* URLSession+Async.swift */; };
+		DC2A9DB62BA04DD50018563A /* GraphQLOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2A9DB52BA04DD40018563A /* GraphQLOperation.swift */; };
+		DC2A9DB82BA04E640018563A /* GraphQLResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2A9DB72BA04E640018563A /* GraphQLResult.swift */; };
+		DC2A9DBA2BA04EB70018563A /* GraphQLAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2A9DB92BA04EB70018563A /* GraphQLAPI.swift */; };
+		DC2A9DBD2BA050340018563A /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2A9DBC2BA050340018563A /* Car.swift */; };
+		DC2A9DBF2BA050AE0018563A /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2A9DBE2BA050AE0018563A /* Account.swift */; };
+		DC2A9DC12BA053B50018563A /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2A9DC02BA053B50018563A /* Entry.swift */; };
+		DC2A9DC32BA054BB0018563A /* ListCars.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2A9DC22BA054BB0018563A /* ListCars.swift */; };
 		DC78B5702B9BBEB400A8D964 /* MileageMasterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC78B56F2B9BBEB400A8D964 /* MileageMasterApp.swift */; };
-		DC78B5722B9BBEB400A8D964 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC78B5712B9BBEB400A8D964 /* ContentView.swift */; };
 		DC78B5742B9BBEB600A8D964 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC78B5732B9BBEB600A8D964 /* Assets.xcassets */; };
 		DC78B5772B9BBEB600A8D964 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC78B5762B9BBEB600A8D964 /* Preview Assets.xcassets */; };
 		DC78B5812B9BBEB600A8D964 /* MileageMasterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC78B5802B9BBEB600A8D964 /* MileageMasterTests.swift */; };
 		DC78B58B2B9BBEB600A8D964 /* MileageMasterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC78B58A2B9BBEB600A8D964 /* MileageMasterUITests.swift */; };
 		DC78B58D2B9BBEB600A8D964 /* MileageMasterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC78B58C2B9BBEB600A8D964 /* MileageMasterUITestsLaunchTests.swift */; };
+		DC78B5A12B9BC0FA00A8D964 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC78B5A02B9BC0FA00A8D964 /* Main.swift */; };
+		DC78B5A52B9BC59300A8D964 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC78B5A42B9BC59300A8D964 /* Dashboard.swift */; };
+		DC78B5A72B9BC59D00A8D964 /* ServiceBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC78B5A62B9BC59D00A8D964 /* ServiceBook.swift */; };
+		DC78B5A92B9BC5AE00A8D964 /* RefillLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC78B5A82B9BC5AE00A8D964 /* RefillLogs.swift */; };
+		DC78B5AB2B9BC5B500A8D964 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC78B5AA2B9BC5B500A8D964 /* Settings.swift */; };
+		DC78B5AD2B9C02AD00A8D964 /* LineGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC78B5AC2B9C02AD00A8D964 /* LineGraph.swift */; };
+		DC78B5AF2B9C3EBD00A8D964 /* ChartContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC78B5AE2B9C3EBD00A8D964 /* ChartContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +49,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DC2A9DB12BA0351E0018563A /* GeneralSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettings.swift; sourceTree = "<group>"; };
+		DC2A9DB32BA04D380018563A /* URLSession+Async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Async.swift"; sourceTree = "<group>"; };
+		DC2A9DB52BA04DD40018563A /* GraphQLOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLOperation.swift; sourceTree = "<group>"; };
+		DC2A9DB72BA04E640018563A /* GraphQLResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLResult.swift; sourceTree = "<group>"; };
+		DC2A9DB92BA04EB70018563A /* GraphQLAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLAPI.swift; sourceTree = "<group>"; };
+		DC2A9DBC2BA050340018563A /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
+		DC2A9DBE2BA050AE0018563A /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		DC2A9DC02BA053B50018563A /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+		DC2A9DC22BA054BB0018563A /* ListCars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCars.swift; sourceTree = "<group>"; };
 		DC78B56C2B9BBEB400A8D964 /* MileageMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MileageMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC78B56F2B9BBEB400A8D964 /* MileageMasterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileageMasterApp.swift; sourceTree = "<group>"; };
-		DC78B5712B9BBEB400A8D964 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DC78B5732B9BBEB600A8D964 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC78B5762B9BBEB600A8D964 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DC78B57C2B9BBEB600A8D964 /* MileageMasterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MileageMasterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +67,13 @@
 		DC78B5862B9BBEB600A8D964 /* MileageMasterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MileageMasterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC78B58A2B9BBEB600A8D964 /* MileageMasterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileageMasterUITests.swift; sourceTree = "<group>"; };
 		DC78B58C2B9BBEB600A8D964 /* MileageMasterUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileageMasterUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DC78B5A02B9BC0FA00A8D964 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
+		DC78B5A42B9BC59300A8D964 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
+		DC78B5A62B9BC59D00A8D964 /* ServiceBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceBook.swift; sourceTree = "<group>"; };
+		DC78B5A82B9BC5AE00A8D964 /* RefillLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefillLogs.swift; sourceTree = "<group>"; };
+		DC78B5AA2B9BC5B500A8D964 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		DC78B5AC2B9C02AD00A8D964 /* LineGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineGraph.swift; sourceTree = "<group>"; };
+		DC78B5AE2B9C3EBD00A8D964 /* ChartContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +101,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DC2A9DB02BA035010018563A /* GeneralSettings */ = {
+			isa = PBXGroup;
+			children = (
+				DC2A9DB12BA0351E0018563A /* GeneralSettings.swift */,
+			);
+			path = GeneralSettings;
+			sourceTree = "<group>";
+		};
+		DC2A9DBB2BA050060018563A /* DataModels */ = {
+			isa = PBXGroup;
+			children = (
+				DC2A9DBC2BA050340018563A /* Car.swift */,
+				DC2A9DBE2BA050AE0018563A /* Account.swift */,
+				DC2A9DC02BA053B50018563A /* Entry.swift */,
+			);
+			path = DataModels;
+			sourceTree = "<group>";
+		};
 		DC78B5632B9BBEB400A8D964 = {
 			isa = PBXGroup;
 			children = (
@@ -94,8 +142,10 @@
 		DC78B56E2B9BBEB400A8D964 /* MileageMaster */ = {
 			isa = PBXGroup;
 			children = (
+				DC78B59B2B9BBF1100A8D964 /* Controller */,
+				DC78B59A2B9BBF0C00A8D964 /* View */,
+				DC78B5992B9BBF0400A8D964 /* Model */,
 				DC78B56F2B9BBEB400A8D964 /* MileageMasterApp.swift */,
-				DC78B5712B9BBEB400A8D964 /* ContentView.swift */,
 				DC78B5732B9BBEB600A8D964 /* Assets.xcassets */,
 				DC78B5752B9BBEB600A8D964 /* Preview Content */,
 			);
@@ -125,6 +175,73 @@
 				DC78B58C2B9BBEB600A8D964 /* MileageMasterUITestsLaunchTests.swift */,
 			);
 			path = MileageMasterUITests;
+			sourceTree = "<group>";
+		};
+		DC78B5992B9BBF0400A8D964 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DC2A9DBB2BA050060018563A /* DataModels */,
+				DC2A9DB32BA04D380018563A /* URLSession+Async.swift */,
+				DC2A9DB52BA04DD40018563A /* GraphQLOperation.swift */,
+				DC2A9DB72BA04E640018563A /* GraphQLResult.swift */,
+				DC2A9DB92BA04EB70018563A /* GraphQLAPI.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DC78B59A2B9BBF0C00A8D964 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DC78B59C2B9BBF3500A8D964 /* Dashboard */,
+				DC78B59F2B9BBF6100A8D964 /* ServiceBook */,
+				DC78B59E2B9BBF5300A8D964 /* RefillLogs */,
+				DC78B59D2B9BBF4A00A8D964 /* Settings */,
+				DC78B5A02B9BC0FA00A8D964 /* Main.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DC78B59B2B9BBF1100A8D964 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DC2A9DC22BA054BB0018563A /* ListCars.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		DC78B59C2B9BBF3500A8D964 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				DC78B5A42B9BC59300A8D964 /* Dashboard.swift */,
+				DC78B5AC2B9C02AD00A8D964 /* LineGraph.swift */,
+				DC78B5AE2B9C3EBD00A8D964 /* ChartContainer.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		DC78B59D2B9BBF4A00A8D964 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				DC2A9DB02BA035010018563A /* GeneralSettings */,
+				DC78B5AA2B9BC5B500A8D964 /* Settings.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		DC78B59E2B9BBF5300A8D964 /* RefillLogs */ = {
+			isa = PBXGroup;
+			children = (
+				DC78B5A82B9BC5AE00A8D964 /* RefillLogs.swift */,
+			);
+			path = RefillLogs;
+			sourceTree = "<group>";
+		};
+		DC78B59F2B9BBF6100A8D964 /* ServiceBook */ = {
+			isa = PBXGroup;
+			children = (
+				DC78B5A62B9BC59D00A8D964 /* ServiceBook.swift */,
+			);
+			path = ServiceBook;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +374,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC78B5722B9BBEB400A8D964 /* ContentView.swift in Sources */,
+				DC78B5A12B9BC0FA00A8D964 /* Main.swift in Sources */,
+				DC78B5A52B9BC59300A8D964 /* Dashboard.swift in Sources */,
 				DC78B5702B9BBEB400A8D964 /* MileageMasterApp.swift in Sources */,
+				DC2A9DC32BA054BB0018563A /* ListCars.swift in Sources */,
+				DC2A9DB62BA04DD50018563A /* GraphQLOperation.swift in Sources */,
+				DC2A9DB82BA04E640018563A /* GraphQLResult.swift in Sources */,
+				DC2A9DBF2BA050AE0018563A /* Account.swift in Sources */,
+				DC2A9DBA2BA04EB70018563A /* GraphQLAPI.swift in Sources */,
+				DC78B5AD2B9C02AD00A8D964 /* LineGraph.swift in Sources */,
+				DC2A9DC12BA053B50018563A /* Entry.swift in Sources */,
+				DC2A9DB22BA0351E0018563A /* GeneralSettings.swift in Sources */,
+				DC78B5AF2B9C3EBD00A8D964 /* ChartContainer.swift in Sources */,
+				DC78B5AB2B9BC5B500A8D964 /* Settings.swift in Sources */,
+				DC2A9DB42BA04D380018563A /* URLSession+Async.swift in Sources */,
+				DC78B5A92B9BC5AE00A8D964 /* RefillLogs.swift in Sources */,
+				DC2A9DBD2BA050340018563A /* Car.swift in Sources */,
+				DC78B5A72B9BC59D00A8D964 /* ServiceBook.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

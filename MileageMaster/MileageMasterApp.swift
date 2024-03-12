@@ -11,7 +11,11 @@ import SwiftUI
 struct MileageMasterApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Main()
         }
     }
+}
+
+#Preview {
+    Main()
 }
