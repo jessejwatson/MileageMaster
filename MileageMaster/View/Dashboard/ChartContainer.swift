@@ -7,10 +7,13 @@
 
 import SwiftUI
 
-struct ChartContainer<Content: View>: View {
+struct ChartContainer<Content: View>: View
+{
+    
+    @Environment(\.colorScheme) var colorScheme
     
     let header: String
-    let graph: Content
+    var graph: Content
     
     var body: some View {
         VStack
@@ -20,7 +23,7 @@ struct ChartContainer<Content: View>: View {
                 .font(.headline)
             graph
         }
-        .background(Color.gray.opacity(0.1))
+        .background(colorScheme == .light ? Color.white : Color.secondary.opacity(0.15))
         .frame(width: UIScreen.main.bounds.width - 20)
         .cornerRadius(25)
     }

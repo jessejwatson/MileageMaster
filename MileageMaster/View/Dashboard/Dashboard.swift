@@ -10,6 +10,8 @@ import SwiftUI
 struct Dashboard: View
 {
     
+    @Environment(\.colorScheme) var colorScheme
+    
     @State private var cars: [Car] = []
     @State private var entries: [Entry] = []
     @State private var isLoading: Bool = false
@@ -45,6 +47,20 @@ struct Dashboard: View
                 let entries: [Entry] = try await GraphQLAPI().performOperation(operation)
                 print("Finished fetching entries...")
                 self.entries = entries
+                
+                var num: Int = 0
+                dollarPerLiterData.removeAll()
+                
+                for entry in entries {
+                    let dollarPerLiter = entry.totalPrice / entry.liters
+                    
+                    print(num)
+                    print(dollarPerLiter)
+                    
+                    dollarPerLiterData.append((String(num), dollarPerLiter))
+                    
+                    num = num + 1
+                }
             } catch {
                 print(error)
                 errorMessage = error.localizedDescription
@@ -52,24 +68,6 @@ struct Dashboard: View
             isLoading = false
         }
     }
-    
-    let mockData1: [(category: String, value: Double)] = [
-        ("Test", 2.0),
-        ("Test2", 5.0),
-        ("Test3", 4.0)
-    ]
-    
-    let mockData2: [(category: String, value: Double)] = [
-        ("Test", 2.0),
-        ("Test2", 0.5),
-        ("Test3", 6.0)
-    ]
-    
-    let mockData3: [(category: String, value: Double)] = [
-        ("Test", 5.0),
-        ("Test2", 8.0),
-        ("Test3", 10.0)
-    ]
     
     var body: some View
     {
@@ -82,14 +80,14 @@ struct Dashboard: View
                 {
                     LazyVGrid(columns: [GridItem(.flexible())], spacing: 20)
                     {
-                        ChartContainer(header: "Economy (L/100km)", graph: LineGraph(data: mockData1))
+//                        ChartContainer(header: "Economy (L/100km)", graph: LineGraph(data: mockData1))
                         ChartContainer(header: "Fuel Price ($/L)", graph: LineGraph(data: dollarPerLiterData))
-                        ChartContainer(header: "KM Cost ($/km)", graph: LineGraph(data: mockData3))
+//                        ChartContainer(header: "KM Cost ($/km)", graph: LineGraph(data: mockData3))
                         ForEach(cars)
                         {
                             car in
                             
-                            Text(car.name)
+                            Text(car.name + " - " + car.plate)
                         }
                     }
                     .padding(.horizontal)
@@ -98,16 +96,11 @@ struct Dashboard: View
             }
             .navigationTitle("Dashboard")
             .navigationBarTitleDisplayMode(.large)
+            .background(colorScheme == .light ? Color.secondary.opacity(0.15) : Color.black)
             .onAppear()
             {
                 loadCars()
                 loadEntries()
-                
-                for entry in entries {
-                    let category: String = String(format: "%f", entry.liters)
-                    let dollarPerLiter = entry.totalPrice / entry.liters
-                    dollarPerLiterData.append((category, dollarPerLiter))
-                }
             }
         }
     }

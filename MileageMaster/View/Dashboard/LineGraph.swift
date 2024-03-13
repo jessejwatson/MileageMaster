@@ -8,14 +8,15 @@
 import SwiftUI
 import Charts
 
-struct LineGraph: View {
+struct LineGraph: View
+{
     
-    let data: [(category: String, value: Double)]
+    var data: [(category: String, value: Double)]?
     
     var body: some View {
         Chart
         {
-            ForEach(data, id: \.category)
+            ForEach(data!, id: \.category)
             { datum in
                 LineMark(
                     x: .value("Test Num", datum.category),
