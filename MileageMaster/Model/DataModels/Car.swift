@@ -13,6 +13,14 @@ struct Car: Decodable, Identifiable
     let plate: String
     let name: String
     let fuel: String
-//    let accounts: [Account]
-//    let entries: [Entry]
+    let accounts: [Account]
+    let entries: [Entry]
+}
+
+struct SmallCar: Decodable, Identifiable
+{
+    var id: String = UUID().uuidString
+    let plate: String
+    let name: String
+    let fuel: String
 }

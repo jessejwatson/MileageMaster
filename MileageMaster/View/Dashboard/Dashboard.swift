@@ -12,8 +12,8 @@ struct Dashboard: View
     
     @Environment(\.colorScheme) var colorScheme
     
-    @State private var cars: [Car] = []
-    @State private var entries: [Entry] = []
+    @State private var cars: [SmallCar] = []
+    @State private var entries: [SmallEntry] = []
     @State private var isLoading: Bool = false
     @State private var errorMessage: String?
     
@@ -26,7 +26,7 @@ struct Dashboard: View
             do {
                 print("Fetching cars...")
                 let operation = GraphQLOperation("{ cars { id plate name fuel } }")
-                let cars: [Car] = try await GraphQLAPI().performOperation(operation)
+                let cars: [SmallCar] = try await GraphQLAPI().performOperation(operation)
                 print("Finished fetching cars...")
                 self.cars = cars
             } catch {
@@ -43,8 +43,8 @@ struct Dashboard: View
         Task {
             do {
                 print("Fetching entries...")
-                let operation = GraphQLOperation("{ entries { id odoPrev odoCurr liters totalPrice station notes } }")
-                let entries: [Entry] = try await GraphQLAPI().performOperation(operation)
+                let operation = GraphQLOperation("{ entries { id createdAt odoPrev odoCurr liters totalPrice station notes } }")
+                let entries: [SmallEntry] = try await GraphQLAPI().performOperation(operation)
                 print("Finished fetching entries...")
                 self.entries = entries
                 
@@ -54,10 +54,7 @@ struct Dashboard: View
                 for entry in entries {
                     let dollarPerLiter = entry.totalPrice / entry.liters
                     
-                    print(num)
-                    print(dollarPerLiter)
-                    
-                    dollarPerLiterData.append((String(num), dollarPerLiter))
+                    dollarPerLiterData.append((entry.createdAt, dollarPerLiter))
                     
                     num = num + 1
                 }

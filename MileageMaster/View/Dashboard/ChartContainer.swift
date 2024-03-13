@@ -24,7 +24,7 @@ struct ChartContainer<Content: View>: View
             graph
         }
         .background(colorScheme == .light ? Color.white : Color.secondary.opacity(0.15))
-        .frame(width: UIScreen.main.bounds.width - 20)
+        .frame(width: UIScreen.main.bounds.width - 30)
         .cornerRadius(25)
     }
 }

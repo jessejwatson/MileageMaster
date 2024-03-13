@@ -9,6 +9,14 @@ import SwiftUI
 
 struct Main: View
 {
+    
+    func hapticFeedback()
+    {
+        let generator = UIImpactFeedbackGenerator(style: .light)
+            generator.prepare()
+            generator.impactOccurred()
+    }
+    
     var body: some View
     {   
         TabView
@@ -18,11 +26,19 @@ struct Main: View
                 {
                     Label("Dashboard", systemImage: "gauge.open.with.lines.needle.33percent")
                 }
+                .onAppear
+                {
+                    hapticFeedback()
+                }
             
             ServiceBook()
                 .tabItem
                 {
                     Label("Service Book", systemImage: "book.pages")
+                }
+                .onAppear
+                {
+                    hapticFeedback()
                 }
             
             RefillLogs()
@@ -30,13 +46,20 @@ struct Main: View
                 {
                     Label("Refill Logs", systemImage: "fuelpump")
                 }
+                .onAppear
+                {
+                    hapticFeedback()
+                }
             
             Settings()
                 .tabItem
                 {
                     Label("Settings", systemImage: "gear")
                 }
-
+                .onAppear
+                {
+                    hapticFeedback()
+                }
         }
     }
 }

@@ -14,3 +14,10 @@ struct Account: Decodable, Identifiable
     let email: String
     let cars: [Car]
 }
+
+struct SmallAccount: Decodable, Identifiable
+{
+    var id: String = UUID().uuidString
+    let name: String
+    let email: String
+}
