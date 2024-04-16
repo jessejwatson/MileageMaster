@@ -17,7 +17,7 @@ struct Entry: Decodable, Identifiable
     let totalPrice: Double
     let station: String
     let notes: String?
-    let car: Car
+    let car: SmallCar
 }
 
 struct SmallEntry: Decodable, Identifiable

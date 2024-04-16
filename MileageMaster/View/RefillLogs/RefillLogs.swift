@@ -8,11 +8,24 @@
 import SwiftUI
 
 struct RefillLogs: View {
+    
+    @EnvironmentObject var mileageMasterData: MileageMasterData
+        
     var body: some View {
-        Text("Refill Logs")
+        
+        if mileageMasterData.cars == nil || mileageMasterData.entries == nil {
+            Loader("Loading data...")
+        } else {
+            NavigationView() {
+                List(mileageMasterData.entries!.reversed()) { entry in
+                    EntryListItem(entry)
+                }
+                .navigationTitle("Refill Logs")
+            }
+        }
     }
 }
 
-#Preview {
-    RefillLogs()
-}
+//#Preview {
+//    RefillLogs(logs: $logs)
+//}

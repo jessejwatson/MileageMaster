@@ -12,6 +12,14 @@ struct MileageMasterApp: App {
     var body: some Scene {
         WindowGroup {
             Main()
+                .environmentObject(MileageMasterData.shared)
+                .onAppear() {
+                    let carController = CarController()
+                    carController.loadCars()
+                    
+                    let entryController = EntryController()
+                    entryController.loadEntries()
+                }
         }
     }
 }

@@ -7,60 +7,90 @@
 
 import SwiftUI
 
-struct Main: View
-{
+struct Main: View {
     
-    func hapticFeedback()
-    {
+    @EnvironmentObject var mileageMasterData: MileageMasterData
+        
+    func hapticFeedback() {
         let generator = UIImpactFeedbackGenerator(style: .light)
-            generator.prepare()
-            generator.impactOccurred()
+        generator.prepare()
+        generator.impactOccurred()
     }
     
-    var body: some View
-    {   
-        TabView
-        {
+    var body: some View {
+        
+        if mileageMasterData.cars == nil || mileageMasterData.entries == nil {
+            Loader("Loading data...")
+        } else {
+            TabView {
+                Dashboard()
+                    .tabItem {
+                        Label("Dashboard", systemImage: "gauge.open.with.lines.needle.33percent")
+                    }
+                    .onAppear {
+                        hapticFeedback()
+                    }
+                
+                ServiceBook()
+                    .tabItem {
+                        Label("Service Book", systemImage: "book.pages")
+                    }
+                    .onAppear {
+                        hapticFeedback()
+                    }
+                
+                RefillLogs()
+                    .tabItem {
+                        Label("Refill Logs", systemImage: "fuelpump")
+                    }
+                    .onAppear {
+                        hapticFeedback()
+                    }
+                
+                Settings()
+                    .tabItem {
+                        Label("Settings", systemImage: "gear")
+                    }
+                    .onAppear {
+                        hapticFeedback()
+                    }
+            }
+        }
+        
+        /*TabView {
             Dashboard()
-                .tabItem
-                {
+                .tabItem {
                     Label("Dashboard", systemImage: "gauge.open.with.lines.needle.33percent")
                 }
-                .onAppear
-                {
+                .onAppear {
                     hapticFeedback()
                 }
             
             ServiceBook()
-                .tabItem
-                {
+                .tabItem {
                     Label("Service Book", systemImage: "book.pages")
                 }
-                .onAppear
-                {
+                .onAppear {
                     hapticFeedback()
                 }
             
             RefillLogs()
-                .tabItem
-                {
+                .tabItem {
                     Label("Refill Logs", systemImage: "fuelpump")
                 }
-                .onAppear
-                {
+                .onAppear {
                     hapticFeedback()
                 }
             
             Settings()
-                .tabItem
-                {
+                .tabItem {
                     Label("Settings", systemImage: "gear")
                 }
-                .onAppear
-                {
+                .onAppear {
                     hapticFeedback()
                 }
-        }
+        }*/
+
     }
 }
 

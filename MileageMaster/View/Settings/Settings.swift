@@ -8,18 +8,26 @@
 import SwiftUI
 
 struct Settings: View {
+    
+    @EnvironmentObject var mileageMasterData: MileageMasterData
+        
     var body: some View {
-        NavigationView
-        {
-            List
-            {
-                NavigationLink("General", destination: GeneralSettings())
+        
+        if mileageMasterData.cars == nil || mileageMasterData.entries == nil {
+            
+        } else {
+            NavigationView {
+                List {
+                    NavigationLink("General", destination: GeneralSettings())
+                    NavigationLink("My Cars", destination: MyCars(cars: mileageMasterData.cars!))
+                }
+                .navigationTitle("Settings")
             }
-            .navigationTitle("Settings")
         }
+
     }
 }
 
-#Preview {
-    Settings()
-}
+//#Preview {
+//    Settings()
+//}

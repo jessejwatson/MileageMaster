@@ -7,99 +7,56 @@
 
 import SwiftUI
 
-struct Dashboard: View
-{
+struct Dashboard: View {
     
-    @Environment(\.colorScheme) var colorScheme
+    @EnvironmentObject var mileageMasterData: MileageMasterData
     
-    @State private var cars: [SmallCar] = []
-    @State private var entries: [SmallEntry] = []
-    @State private var isLoading: Bool = false
-    @State private var errorMessage: String?
-    
-    @State private var dollarPerLiterData: [(category: String, value: Double)] = []
-    
-    func loadCars()
-    {
-        isLoading = true
-        Task {
-            do {
-                print("Fetching cars...")
-                let operation = GraphQLOperation("{ cars { id plate name fuel } }")
-                let cars: [SmallCar] = try await GraphQLAPI().performOperation(operation)
-                print("Finished fetching cars...")
-                self.cars = cars
-            } catch {
-                print(error)
-                errorMessage = error.localizedDescription
-            }
-            isLoading = false
-        }
-    }
-    
-    func loadEntries()
-    {
-        isLoading = true
-        Task {
-            do {
-                print("Fetching entries...")
-                let operation = GraphQLOperation("{ entries { id createdAt odoPrev odoCurr liters totalPrice station notes } }")
-                let entries: [SmallEntry] = try await GraphQLAPI().performOperation(operation)
-                print("Finished fetching entries...")
-                self.entries = entries
-                
-                var num: Int = 0
-                dollarPerLiterData.removeAll()
-                
-                for entry in entries {
-                    let dollarPerLiter = entry.totalPrice / entry.liters
-                    
-                    dollarPerLiterData.append((entry.createdAt, dollarPerLiter))
-                    
-                    num = num + 1
-                }
-            } catch {
-                print(error)
-                errorMessage = error.localizedDescription
-            }
-            isLoading = false
-        }
-    }
-    
-    var body: some View
-    {
+    var body: some View {
         
-        NavigationView
-        {
-            ScrollView(showsIndicators: false)
-            {
-                VStack(spacing: 20)
-                {
-                    LazyVGrid(columns: [GridItem(.flexible())], spacing: 20)
-                    {
-//                        ChartContainer(header: "Economy (L/100km)", graph: LineGraph(data: mockData1))
-                        ChartContainer(header: "Fuel Price ($/L)", graph: LineGraph(data: dollarPerLiterData))
-//                        ChartContainer(header: "KM Cost ($/km)", graph: LineGraph(data: mockData3))
-                        ForEach(cars)
-                        {
-                            car in
-                            
-                            Text(car.name + " - " + car.plate)
-                        }
+        NavigationView {
+            VStack() {
+                
+                HStack() {
+                    
+                    Spacer()
+                    
+                    OpenViewBtn(icon: "plus.circle.fill", text: "New Service") {
+                        Loader("testing...")
                     }
-                    .padding(.horizontal)
+                    
+                    Spacer()
+                    
+                    OpenViewBtn(icon: "fuelpump.fill", text: "New Refill", color: Color.orange) {
+                        Loader("testing...")
+                    }
+                    
+                    Spacer()
+                    
                 }
-                .padding(.bottom)
+                .padding()
+                                
+                Text("Upcoming")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Spacer()
+                
+                Text("Recent")
+                    .font(.title)
+                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Spacer()
+                
+                Text("graphs here...")
+                
+                Spacer()
+                
             }
-            .navigationTitle("Dashboard")
-            .navigationBarTitleDisplayMode(.large)
-            .background(colorScheme == .light ? Color.secondary.opacity(0.15) : Color.black)
-            .onAppear()
-            {
-                loadCars()
-                loadEntries()
-            }
+            .padding()
         }
+        .navigationTitle("Dashboard")
     }
 }
 

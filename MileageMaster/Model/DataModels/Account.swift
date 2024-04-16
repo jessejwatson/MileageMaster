@@ -12,7 +12,7 @@ struct Account: Decodable, Identifiable
     var id: String = UUID().uuidString
     let name: String
     let email: String
-    let cars: [Car]
+    let cars: [SmallCar]
 }
 
 struct SmallAccount: Decodable, Identifiable
