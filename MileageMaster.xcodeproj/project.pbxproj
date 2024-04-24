@@ -8,14 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		DC2A9DB22BA0351E0018563A /* GeneralSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2A9DB12BA0351E0018563A /* GeneralSettings.swift */; };
-		DC2A9DB42BA04D380018563A /* URLSession+Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2A9DB32BA04D380018563A /* URLSession+Async.swift */; };
-		DC2A9DB62BA04DD50018563A /* GraphQLOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2A9DB52BA04DD40018563A /* GraphQLOperation.swift */; };
-		DC2A9DB82BA04E640018563A /* GraphQLResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2A9DB72BA04E640018563A /* GraphQLResult.swift */; };
-		DC2A9DBA2BA04EB70018563A /* GraphQLAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2A9DB92BA04EB70018563A /* GraphQLAPI.swift */; };
 		DC2A9DBD2BA050340018563A /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2A9DBC2BA050340018563A /* Car.swift */; };
 		DC2A9DBF2BA050AE0018563A /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2A9DBE2BA050AE0018563A /* Account.swift */; };
 		DC2A9DC12BA053B50018563A /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2A9DC02BA053B50018563A /* Entry.swift */; };
-		DC2A9DC32BA054BB0018563A /* ListCars.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2A9DC22BA054BB0018563A /* ListCars.swift */; };
 		DC43B9642BCD091E00F0145D /* CarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43B9632BCD091E00F0145D /* CarController.swift */; };
 		DC43B9662BCD143D00F0145D /* EntryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43B9652BCD143D00F0145D /* EntryController.swift */; };
 		DC43B9682BCD1A1F00F0145D /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43B9672BCD1A1F00F0145D /* Loader.swift */; };
@@ -23,6 +18,7 @@
 		DC43B96C2BCD257100F0145D /* EntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43B96B2BCD257100F0145D /* EntryView.swift */; };
 		DC65C3312BCA6746001990F9 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = DC65C3302BCA6746001990F9 /* GoogleSignIn */; };
 		DC65C3332BCA6746001990F9 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DC65C3322BCA6746001990F9 /* GoogleSignInSwift */; };
+		DC7539F52BD20B89002A0277 /* NewRefillLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7539F42BD20B89002A0277 /* NewRefillLog.swift */; };
 		DC78B5702B9BBEB400A8D964 /* MileageMasterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC78B56F2B9BBEB400A8D964 /* MileageMasterApp.swift */; };
 		DC78B5742B9BBEB600A8D964 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC78B5732B9BBEB600A8D964 /* Assets.xcassets */; };
 		DC78B5772B9BBEB600A8D964 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC78B5762B9BBEB600A8D964 /* Preview Assets.xcassets */; };
@@ -37,9 +33,13 @@
 		DC78B5AD2B9C02AD00A8D964 /* LineGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC78B5AC2B9C02AD00A8D964 /* LineGraph.swift */; };
 		DC78B5AF2B9C3EBD00A8D964 /* ChartContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC78B5AE2B9C3EBD00A8D964 /* ChartContainer.swift */; };
 		DCBE85242BCCE0BA00DC64E5 /* MileageMasterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBE85232BCCE0BA00DC64E5 /* MileageMasterData.swift */; };
+		DCD145372BD76F390030772C /* GraphQLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD145362BD76F390030772C /* GraphQLResponse.swift */; };
+		DCD75CE02BD0C47A007E137D /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD75CDF2BD0C47A007E137D /* Service.swift */; };
+		DCD75CE22BD0C58E007E137D /* ServiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD75CE12BD0C58E007E137D /* ServiceController.swift */; };
 		DCD97F562BA28979002DAFE5 /* MyCars.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD97F552BA28979002DAFE5 /* MyCars.swift */; };
 		DCD97F5A2BA28C74002DAFE5 /* CarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD97F592BA28C74002DAFE5 /* CarView.swift */; };
 		DCD9A2342BCE1B44000DBBED /* OpenViewBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD9A2332BCE1B44000DBBED /* OpenViewBtn.swift */; };
+		DCFAE94C2BD7590700E69A67 /* GraphQLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFAE94B2BD7590700E69A67 /* GraphQLRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,20 +61,16 @@
 
 /* Begin PBXFileReference section */
 		DC2A9DB12BA0351E0018563A /* GeneralSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettings.swift; sourceTree = "<group>"; };
-		DC2A9DB32BA04D380018563A /* URLSession+Async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Async.swift"; sourceTree = "<group>"; };
-		DC2A9DB52BA04DD40018563A /* GraphQLOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLOperation.swift; sourceTree = "<group>"; };
-		DC2A9DB72BA04E640018563A /* GraphQLResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLResult.swift; sourceTree = "<group>"; };
-		DC2A9DB92BA04EB70018563A /* GraphQLAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLAPI.swift; sourceTree = "<group>"; };
 		DC2A9DBC2BA050340018563A /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 		DC2A9DBE2BA050AE0018563A /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		DC2A9DC02BA053B50018563A /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
-		DC2A9DC22BA054BB0018563A /* ListCars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCars.swift; sourceTree = "<group>"; };
 		DC43B9632BCD091E00F0145D /* CarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarController.swift; sourceTree = "<group>"; };
 		DC43B9652BCD143D00F0145D /* EntryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryController.swift; sourceTree = "<group>"; };
 		DC43B9672BCD1A1F00F0145D /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		DC43B9692BCD1B1E00F0145D /* EntryListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryListItem.swift; sourceTree = "<group>"; };
 		DC43B96B2BCD257100F0145D /* EntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryView.swift; sourceTree = "<group>"; };
 		DC65C3342BCA6A67001990F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC7539F42BD20B89002A0277 /* NewRefillLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRefillLog.swift; sourceTree = "<group>"; };
 		DC78B56C2B9BBEB400A8D964 /* MileageMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MileageMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC78B56F2B9BBEB400A8D964 /* MileageMasterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileageMasterApp.swift; sourceTree = "<group>"; };
 		DC78B5732B9BBEB600A8D964 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -93,9 +89,13 @@
 		DC78B5AE2B9C3EBD00A8D964 /* ChartContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartContainer.swift; sourceTree = "<group>"; };
 		DC89F34A2BCA720D00356A73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DCBE85232BCCE0BA00DC64E5 /* MileageMasterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileageMasterData.swift; sourceTree = "<group>"; };
+		DCD145362BD76F390030772C /* GraphQLResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLResponse.swift; sourceTree = "<group>"; };
+		DCD75CDF2BD0C47A007E137D /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		DCD75CE12BD0C58E007E137D /* ServiceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceController.swift; sourceTree = "<group>"; };
 		DCD97F552BA28979002DAFE5 /* MyCars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCars.swift; sourceTree = "<group>"; };
 		DCD97F592BA28C74002DAFE5 /* CarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarView.swift; sourceTree = "<group>"; };
 		DCD9A2332BCE1B44000DBBED /* OpenViewBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenViewBtn.swift; sourceTree = "<group>"; };
+		DCFAE94B2BD7590700E69A67 /* GraphQLRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +140,7 @@
 				DC2A9DBE2BA050AE0018563A /* Account.swift */,
 				DC2A9DC02BA053B50018563A /* Entry.swift */,
 				DCBE85232BCCE0BA00DC64E5 /* MileageMasterData.swift */,
+				DCD75CDF2BD0C47A007E137D /* Service.swift */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";
@@ -207,11 +208,8 @@
 		DC78B5992B9BBF0400A8D964 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DCFAE94A2BD758DF00E69A67 /* GraphQL */,
 				DC2A9DBB2BA050060018563A /* DataModels */,
-				DC2A9DB32BA04D380018563A /* URLSession+Async.swift */,
-				DC2A9DB52BA04DD40018563A /* GraphQLOperation.swift */,
-				DC2A9DB72BA04E640018563A /* GraphQLResult.swift */,
-				DC2A9DB92BA04EB70018563A /* GraphQLAPI.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -232,9 +230,9 @@
 		DC78B59B2B9BBF1100A8D964 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				DC2A9DC22BA054BB0018563A /* ListCars.swift */,
 				DC43B9632BCD091E00F0145D /* CarController.swift */,
 				DC43B9652BCD143D00F0145D /* EntryController.swift */,
+				DCD75CE12BD0C58E007E137D /* ServiceController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -266,6 +264,7 @@
 				DC78B5A82B9BC5AE00A8D964 /* RefillLogs.swift */,
 				DC43B9692BCD1B1E00F0145D /* EntryListItem.swift */,
 				DC43B96B2BCD257100F0145D /* EntryView.swift */,
+				DC7539F42BD20B89002A0277 /* NewRefillLog.swift */,
 			);
 			path = RefillLogs;
 			sourceTree = "<group>";
@@ -285,6 +284,15 @@
 				DCD97F592BA28C74002DAFE5 /* CarView.swift */,
 			);
 			path = MyCars;
+			sourceTree = "<group>";
+		};
+		DCFAE94A2BD758DF00E69A67 /* GraphQL */ = {
+			isa = PBXGroup;
+			children = (
+				DCFAE94B2BD7590700E69A67 /* GraphQLRequest.swift */,
+				DCD145362BD76F390030772C /* GraphQLResponse.swift */,
+			);
+			path = GraphQL;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -430,20 +438,20 @@
 				DC43B9682BCD1A1F00F0145D /* Loader.swift in Sources */,
 				DCD97F562BA28979002DAFE5 /* MyCars.swift in Sources */,
 				DC78B5702B9BBEB400A8D964 /* MileageMasterApp.swift in Sources */,
-				DC2A9DC32BA054BB0018563A /* ListCars.swift in Sources */,
-				DC2A9DB62BA04DD50018563A /* GraphQLOperation.swift in Sources */,
+				DCD145372BD76F390030772C /* GraphQLResponse.swift in Sources */,
 				DCD97F5A2BA28C74002DAFE5 /* CarView.swift in Sources */,
-				DC2A9DB82BA04E640018563A /* GraphQLResult.swift in Sources */,
+				DC7539F52BD20B89002A0277 /* NewRefillLog.swift in Sources */,
 				DC2A9DBF2BA050AE0018563A /* Account.swift in Sources */,
-				DC2A9DBA2BA04EB70018563A /* GraphQLAPI.swift in Sources */,
 				DC78B5AD2B9C02AD00A8D964 /* LineGraph.swift in Sources */,
 				DC43B9662BCD143D00F0145D /* EntryController.swift in Sources */,
+				DCFAE94C2BD7590700E69A67 /* GraphQLRequest.swift in Sources */,
 				DC2A9DC12BA053B50018563A /* Entry.swift in Sources */,
 				DC2A9DB22BA0351E0018563A /* GeneralSettings.swift in Sources */,
+				DCD75CE02BD0C47A007E137D /* Service.swift in Sources */,
 				DC78B5AF2B9C3EBD00A8D964 /* ChartContainer.swift in Sources */,
 				DCD9A2342BCE1B44000DBBED /* OpenViewBtn.swift in Sources */,
+				DCD75CE22BD0C58E007E137D /* ServiceController.swift in Sources */,
 				DC78B5AB2B9BC5B500A8D964 /* Settings.swift in Sources */,
-				DC2A9DB42BA04D380018563A /* URLSession+Async.swift in Sources */,
 				DC78B5A92B9BC5AE00A8D964 /* RefillLogs.swift in Sources */,
 				DC2A9DBD2BA050340018563A /* Car.swift in Sources */,
 				DC43B9642BCD091E00F0145D /* CarController.swift in Sources */,

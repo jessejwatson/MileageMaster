@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EntryListItem: View {
+struct EntryListItem: View {    
     
     let entry: Entry
     

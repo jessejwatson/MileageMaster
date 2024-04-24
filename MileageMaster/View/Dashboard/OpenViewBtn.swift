@@ -33,7 +33,6 @@ struct OpenViewBtn<Content: View>: View {
     var body: some View {
         
         Button() {
-            print("clicked")
             sheetIsOpen = true
         } label: {
             HStack() {

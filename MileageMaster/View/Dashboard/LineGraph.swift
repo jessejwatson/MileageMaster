@@ -14,10 +14,8 @@ struct LineGraph: View
     var data: [(category: String, value: Double)]?
     
     var body: some View {
-        Chart
-        {
-            ForEach(data!, id: \.category)
-            { datum in
+        Chart {
+            ForEach(data!, id: \.category) { datum in
                 LineMark(
                     x: .value("Test Num", datum.category),
                     y: .value("Value", datum.value)

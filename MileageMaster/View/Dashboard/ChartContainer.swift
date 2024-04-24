@@ -9,28 +9,28 @@ import SwiftUI
 
 struct ChartContainer<Content: View>: View
 {
-    
-    @Environment(\.colorScheme) var colorScheme
-    
+        
     let header: String
     var graph: Content
     
     var body: some View {
-        VStack
-        {
+        VStack {
             Text(header)
                 .padding()
                 .font(.headline)
             graph
         }
-        .background(colorScheme == .light ? Color.white : Color.secondary.opacity(0.15))
-        .frame(width: UIScreen.main.bounds.width - 30)
-        .cornerRadius(25)
+        .background(Color(UIColor.systemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .shadow(color: .gray.opacity(0.3), radius: 5, x: 0, y: 0)
+        .padding()
     }
 }
 
-/*
 #Preview {
-    ChartContainer(graph: LineGraph())
+    ChartContainer(header: "Test" , graph: LineGraph(data: [
+        ("Test", 2.0),
+        ("Test2", 5.0),
+        ("Test3", 4.0)
+    ]))
 }
-*/

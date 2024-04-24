@@ -7,17 +7,19 @@
 
 import Foundation
 
-struct Account: Decodable, Identifiable
-{
-    var id: String = UUID().uuidString
+struct Account: Codable, Identifiable {
+    let id: String
     let name: String
     let email: String
     let cars: [SmallCar]
 }
 
-struct SmallAccount: Decodable, Identifiable
-{
-    var id: String = UUID().uuidString
+struct SmallAccount: Codable, Identifiable {
+    let id: String
     let name: String
     let email: String
+}
+
+struct Accounts: Codable {
+    let accounts: [Account]
 }

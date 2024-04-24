@@ -19,6 +19,9 @@ struct MileageMasterApp: App {
                     
                     let entryController = EntryController()
                     entryController.loadEntries()
+                    
+                    let serviceController = ServiceController()
+                    serviceController.loadServices()
                 }
         }
     }

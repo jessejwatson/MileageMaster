@@ -8,8 +8,23 @@
 import SwiftUI
 
 struct ServiceBook: View {
+    
+    @EnvironmentObject var mileageMasterData: MileageMasterData
+    
     var body: some View {
-        Text("Service Book")
+        
+        if mileageMasterData.services != nil {
+            NavigationView {
+                
+                List(mileageMasterData.services!) { service in
+                    Text("\(service.date)")
+                }
+                
+            }
+        } else {
+            Text("No services yet!")
+        }
+        
     }
 }
 

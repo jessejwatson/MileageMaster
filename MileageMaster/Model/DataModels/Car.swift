@@ -11,34 +11,30 @@ import Foundation
  Will need to learn more about Decodable classes before going any further.
  */
 
-class Car: ObservableObject, Decodable, Identifiable, Equatable
-{
+struct Car: Codable, Identifiable, Hashable {
     static func == (lhs: Car, rhs: Car) -> Bool {
-        lhs.id == rhs.id
+        return lhs.id == rhs.id
     }
     
-    var id: String = UUID().uuidString
-    var plate: String
-    var name: String
-    var fuel: String
-    var accounts: [SmallAccount]
-    var entries: [SmallEntry]
-    
-    init(id: String, plate: String, name: String, fuel: String, accounts: [SmallAccount], entries: [SmallEntry])
-    {
-        self.id = id
-        self.plate = plate
-        self.name = name
-        self.fuel = fuel
-        self.accounts = accounts
-        self.entries = entries
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
-}
-
-struct SmallCar: Decodable, Identifiable
-{
-    var id: String = UUID().uuidString
+    
+    let id: String
     let plate: String
     let name: String
     let fuel: String
+    let accounts: [SmallAccount]
+    let entries: [SmallEntry]
+}
+
+struct SmallCar: Codable, Identifiable, Hashable {
+    let id: String
+    let plate: String
+    let name: String
+    let fuel: String
+}
+
+struct Cars: Codable {
+    let cars: [Car]
 }

@@ -7,9 +7,8 @@
 
 import Foundation
 
-struct Entry: Decodable, Identifiable
-{
-    var id: String = UUID().uuidString
+struct Entry: Codable, Identifiable {
+    let id: String
     let createdAt: String
     let odoPrev: Int
     let odoCurr: Int
@@ -20,9 +19,8 @@ struct Entry: Decodable, Identifiable
     let car: SmallCar
 }
 
-struct SmallEntry: Decodable, Identifiable
-{
-    var id: String = UUID().uuidString
+struct SmallEntry: Codable, Identifiable {
+    let id: String
     let createdAt: String
     let odoPrev: Int
     let odoCurr: Int
@@ -30,4 +28,12 @@ struct SmallEntry: Decodable, Identifiable
     let totalPrice: Double
     let station: String
     let notes: String?
+}
+
+struct Entries: Codable {
+    let entries: [Entry]
+}
+
+struct CreateEntry: Codable {
+    let createEntry: Entry
 }

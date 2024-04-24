@@ -10,32 +10,49 @@ import Foundation
 class CarController {
     
     private let email = "jessewatson04@gmail.com"
+    private let GET_CARS =
+                        """
+                        query GetCars($email: String) {
+                          cars(where: {accounts_some: {email: $email}}) {
+                            id
+                            plate
+                            name
+                            fuel
+                            accounts {
+                              id
+                              name
+                              email
+                            }
+                            entries {
+                              id
+                              createdAt
+                              odoPrev
+                              odoCurr
+                              liters
+                              totalPrice
+                              station
+                              notes
+                            }
+                          }
+                        }
+                        """
     
-    enum CarError: Error {
-        case graphQLError
-    }
-    
-    private func getCars() async throws -> [Car] {
+    private func getCars() async -> [Car] {
+        let graphQLRequest = GraphQLRequest<GraphQLResponse<Cars>>(query: GET_CARS, variables: [(key: "email", value: .string(email))])
         do {
-            let operation = GraphQLOperation("{ cars (where: { accounts_some: { email: \"\(email)\" } }) { id plate name fuel accounts { id name email } entries { id createdAt odoPrev odoCurr liters totalPrice station notes } } }")
-            let cars: [Car] = try await GraphQLAPI().performOperation(operation)
-            
-            return cars
+            let response = try await graphQLRequest.run()
+            return response.data.cars
         } catch {
-            print("Error in CarController > getCars: \(error)")
-            throw CarError.graphQLError
+            print("Failure getting cars: \(error.localizedDescription)\n\(error)")
+            return []
         }
     }
     
     func loadCars() {
         Task {
-            do {
-                let cars: [Car] = try await getCars()
-                DispatchQueue.main.async {
-                    MileageMasterData.shared.cars = cars
-                }
-            } catch {
-                print("Error loading cars: \(error)")
+            let cars: [Car] = await getCars()
+            DispatchQueue.main.async {
+                MileageMasterData.shared.cars = cars
             }
         }
     }

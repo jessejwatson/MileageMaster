@@ -8,10 +8,19 @@
 import SwiftUI
 
 struct GeneralSettings: View {
+    
+    @State var entries: [Entry]? = nil
+    
     var body: some View {
         VStack
         {
-            Text("you are in GENERAL settings...")
+            if entries != nil {
+                ForEach(entries!, id: \.id) { entry in
+                    Text("\(entry.liters)")
+                }
+            } else {
+                Loader("LOADING")
+            }
         }
         .navigationTitle("General")
         .navigationBarTitleDisplayMode(.inline)

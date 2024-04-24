@@ -11,6 +11,7 @@ class MileageMasterData: ObservableObject {
     
     @Published var cars: [Car]?
     @Published var entries: [Entry]?
+    @Published var services: [Service]?
     @Published var account: Account?
     
     static let shared = MileageMasterData()
