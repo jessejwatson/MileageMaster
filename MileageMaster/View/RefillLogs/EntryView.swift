@@ -103,7 +103,6 @@ struct EntryView: View {
                     } label: {
                         Text("Cancel")
                             .padding(4)
-                            .background(Color.gray.opacity(0.15))
                             .cornerRadius(8)
                     }
                     
@@ -135,7 +134,7 @@ struct EntryView: View {
                 }
             }
             .padding()
-            .background(Color.gray.opacity(0.15))
+            .background(Colors.shared.backgroundSecondary)
             .cornerRadius(12)
             .padding([.leading, .trailing])
             .onTapGesture {
@@ -190,7 +189,6 @@ struct EntryView: View {
                     } label: {
                         Text("Cancel")
                             .padding(4)
-                            .background(Color.gray.opacity(0.15))
                             .cornerRadius(8)
                     }
                     
@@ -222,7 +220,7 @@ struct EntryView: View {
                 }
             }
             .padding()
-            .background(Color.gray.opacity(0.15))
+            .background(Colors.shared.backgroundSecondary)
             .cornerRadius(12)
             .padding([.leading, .trailing])
             .onTapGesture {
@@ -278,7 +276,6 @@ struct EntryView: View {
                     } label: {
                         Text("Cancel")
                             .padding(4)
-                            .background(Color.gray.opacity(0.15))
                             .cornerRadius(8)
                     }
                     
@@ -304,7 +301,7 @@ struct EntryView: View {
                 }
             }
             .padding()
-            .background(Color.gray.opacity(0.15))
+            .background(Colors.shared.backgroundSecondary)
             .cornerRadius(12)
             .padding([.leading, .trailing])
             .onTapGesture {
@@ -358,7 +355,6 @@ struct EntryView: View {
                     } label: {
                         Text("Cancel")
                             .padding(4)
-                            .background(Color.gray.opacity(0.15))
                             .cornerRadius(8)
                     }
                     
@@ -384,7 +380,7 @@ struct EntryView: View {
                 }
             }
             .padding()
-            .background(Color.gray.opacity(0.15))
+            .background(Colors.shared.backgroundSecondary)
             .cornerRadius(12)
             .padding([.leading, .trailing])
             .onTapGesture {
@@ -437,7 +433,6 @@ struct EntryView: View {
                     } label: {
                         Text("Cancel")
                             .padding(4)
-                            .background(Color.gray.opacity(0.15))
                             .cornerRadius(8)
                     }
                     
@@ -463,7 +458,7 @@ struct EntryView: View {
                 }
             }
             .padding()
-            .background(Color.gray.opacity(0.15))
+            .background(Colors.shared.backgroundSecondary)
             .cornerRadius(12)
             .padding([.leading, .trailing])
             .onTapGesture {
@@ -492,8 +487,7 @@ struct EntryView: View {
                         
                         Text(String(entry.notes ?? "No notes..."))
                             .font(.title2)
-                            .lineLimit(1)
-                            .truncationMode(.tail)
+                            //.truncationMode(.tail)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
                     }
@@ -502,8 +496,9 @@ struct EntryView: View {
                     
                     // --- Edit Mode
                     
-                    TextField("Notes", text: $notes)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                    TextEditor(text: $notes)
+                        .frame(maxWidth: .infinity, minHeight: 250, alignment: .leading)
+                        .background(Colors.shared.backgroundSecondary)
                         .focused($focusedField, equals: .notes)
                         .onAppear() {
                             notes = entry.notes ?? ""
@@ -516,7 +511,6 @@ struct EntryView: View {
                     } label: {
                         Text("Cancel")
                             .padding(4)
-                            .background(Color.gray.opacity(0.15))
                             .cornerRadius(8)
                     }
                     
@@ -542,8 +536,8 @@ struct EntryView: View {
                 }
             }
             .padding()
-            .frame(minHeight: 150, alignment: .top)
-            .background(Color.gray.opacity(0.15))
+            .frame(minHeight: 100, maxHeight: 300, alignment: .top)
+            .background(Colors.shared.backgroundSecondary)
             .cornerRadius(12)
             .padding([.leading, .trailing])
             .onTapGesture {
@@ -555,6 +549,7 @@ struct EntryView: View {
             
             
         }
+        .background(Colors.shared.background)
         .navigationTitle(createdAt ?? "Log")
         .alert(isPresented: $showAlert) {
             Alert(

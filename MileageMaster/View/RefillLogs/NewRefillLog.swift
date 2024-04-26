@@ -169,19 +169,18 @@ struct NewRefillLog: View {
                         
                         Section(header: Text("Notes")) {
                             
-                            TextField("Notes", text: $notes)
+                            TextEditor(text: $notes)
                                 .padding()
                                 .frame(width: 300)
                             
                         }
                         
-                        
-                        
                     }
+                    .scrollIndicators(.hidden)
                     .scrollContentBackground(.hidden)
                     .background(Colors.shared.background)
                     
-                    Button() {
+                    FullWidthButton("Create") {
                         if  odoCurr != nil &&
                                 odoPrev != nil &&
                                 liters != nil &&
@@ -207,20 +206,6 @@ struct NewRefillLog: View {
                         } else {
                             showAlert(title: "You're Not Done!", message: "Please fill out the required fields.")
                         }
-                    } label: {
-                        Text("Create")
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.accentColor)
-                    .foregroundStyle(.white)
-                    .cornerRadius(8)
-                    .alert(isPresented: $showAlert) {
-                        Alert(
-                            title: Text(alertTitle),
-                            message: Text(alertMessage),
-                            dismissButton: .default(Text("Dismiss"))
-                        )
                     }
                     
                     Spacer()
@@ -264,6 +249,13 @@ struct NewRefillLog: View {
             }
             
             setOdoPrev()
+        }
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text(alertTitle),
+                message: Text(alertMessage),
+                dismissButton: .default(Text("Dismiss"))
+            )
         }
         
     }

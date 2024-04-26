@@ -74,7 +74,7 @@ struct NewCar: View {
                 .scrollContentBackground(.hidden)
                 .background(Colors.shared.background)
                 
-                Button() {
+                FullWidthButton("Create") {
                     if  name.count > 0 &&
                             plate.count > 0 &&
                             fuel.count > 0
@@ -96,20 +96,6 @@ struct NewCar: View {
                         showAlert(title: "You're Not Done!", message: "Please fill out the required fields.")
                         
                     }
-                } label: {
-                    Text("Create")
-                }
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(Color.accentColor)
-                .foregroundStyle(.white)
-                .cornerRadius(8)
-                .alert(isPresented: $showAlert) {
-                    Alert(
-                        title: Text(alertTitle),
-                        message: Text(alertMessage),
-                        dismissButton: .default(Text("Dismiss"))
-                    )
                 }
                 
                 Spacer()
@@ -139,6 +125,13 @@ struct NewCar: View {
         }
         .padding()
         .background(Colors.shared.background)
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text(alertTitle),
+                message: Text(alertMessage),
+                dismissButton: .default(Text("Dismiss"))
+            )
+        }
         
     }
 }
