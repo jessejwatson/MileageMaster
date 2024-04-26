@@ -9,20 +9,81 @@ import SwiftUI
 
 struct Settings: View {
     
+    @Binding var showSignInView: Bool
     @EnvironmentObject var mileageMasterData: MileageMasterData
+    
+    // Alert
+    @State private var alertTitle = ""
+    @State private var alertMessage = ""
+    @State private var showAlert = false
+    
+    @State private var accentColor = Colors.shared.accent
+    
+    private func showAlert(title: String, message: String) {
+        alertTitle = title
+        alertMessage = message
+        showAlert = true
+    }
         
     var body: some View {
         
-        if mileageMasterData.cars == nil || mileageMasterData.entries == nil {
+        if mileageMasterData.account == nil || mileageMasterData.cars == nil || mileageMasterData.entries == nil || mileageMasterData.services == nil {
+            
+            Loader("LOADING")
             
         } else {
             NavigationView {
-                List {
-                    NavigationLink("General", destination: GeneralSettings())
-                    NavigationLink("My Cars", destination: MyCars(cars: mileageMasterData.cars!))
+                VStack {
+                    
+                    List {
+                        
+                        // --- My Cars
+                        
+                        NavigationLink("My Cars", destination: MyCars())
+                        
+                        // --- Accent Color
+                        
+                        ColorPicker("Accent Color", selection: $accentColor)
+                            .onChange(of: accentColor) { color, initial in
+                                Colors.shared.updateAccentColor(color)
+                            }
+                        
+                        Section {
+                            
+                            // --- Log Out Button
+                            
+                            Button {
+                                let authController = AuthController()
+                                do {
+                                    try authController.signOut()
+                                    showSignInView = true
+                                } catch {
+                                    showAlert(title: "Error!", message: "There was an error signing out. Please try again.")
+                                }
+                            } label: {
+                                Text("Log Out")
+                                    .foregroundStyle(.red)
+                            }
+                            
+                        }
+                        
+                    }
+                    
                 }
                 .navigationTitle("Settings")
+                .alert(isPresented: $showAlert) {
+                    
+                    // --- Alert Popup
+                    
+                    Alert(
+                        title: Text(alertTitle),
+                        message: Text(alertMessage),
+                        dismissButton: .default(Text("Dismiss"))
+                    )
+                    
+                }
             }
+            .background(Colors.shared.background)
         }
 
     }

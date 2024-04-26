@@ -37,3 +37,15 @@ struct Entries: Codable {
 struct CreateEntry: Codable {
     let createEntry: Entry
 }
+
+struct DeleteEntry: Codable {
+    let deleteEntry: Entry
+}
+
+struct DeleteManyEntriesConnection: Codable {
+    let deleteManyEntriesConnection: Edges<SmallEntry>
+}
+
+struct UpdateEntry: Codable {
+    let updateEntry: Entry
+}

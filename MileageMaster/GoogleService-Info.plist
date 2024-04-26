@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>43232244899-bn8a4jbvjd0e9d6tgcin5c8jh7tfsgon.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.43232244899-bn8a4jbvjd0e9d6tgcin5c8jh7tfsgon</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC3h_8nTWWUW52xJ_yBJnO0XH-7v38AIWA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>43232244899</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.jessejwatson.mileagemaster</string>
+	<key>PROJECT_ID</key>
+	<string>mileagemaster-be77d</string>
+	<key>STORAGE_BUCKET</key>
+	<string>mileagemaster-be77d.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:43232244899:ios:cd6cb85c777e96c44dbb16</string>
+</dict>
+</plist>

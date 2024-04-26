@@ -11,6 +11,16 @@ struct NewRefillLog: View {
     
     @EnvironmentObject var mileageMasterData: MileageMasterData
     
+    private var preferedCarID: String?
+    
+    init() {
+        self.preferedCarID = nil
+    }
+    
+    init(preferedCarID: String?) {
+        self.preferedCarID = preferedCarID
+    }
+    
     @State private var carID: String? = nil
     @State private var odoCurr: Int? = nil
     @State private var odoPrev: Int? = nil
@@ -44,12 +54,19 @@ struct NewRefillLog: View {
         showAlert = true
     }
     
+    private func setOdoPrev() {
+        if let lastEntry = mileageMasterData.entries?.filter({ $0.car.id == carID }).last {
+            odoPrev = lastEntry.odoCurr
+        } else {
+            odoPrev = nil
+        }
+    }
+    
     var body: some View {
         
         VStack {
             
-            // change to false
-            if showSuccess == true {
+            if showSuccess == false {
                 
                 if mileageMasterData.cars != nil ||
                     mileageMasterData.cars?.count != 0 {
@@ -60,68 +77,128 @@ struct NewRefillLog: View {
                     
                     Spacer()
                     
-                    Picker("Select Car", selection: $carID) {
-                        Text("None").tag(String?.none)
-                        ForEach(mileageMasterData.cars!, id: \.id) { car in
-                            Text(car.name).tag(car.id as String?)
+                    Form {
+                        
+                        Section(header: Text("Car")) {
+                            
+                            Picker("Select Car", selection: $carID) {
+                                Text("None").tag(String?.none)
+                                ForEach(mileageMasterData.cars!, id: \.id) { car in
+                                    Text(car.name).tag(car.id as String?)
+                                }
+                            }
+                            .pickerStyle(.menu)
+                            .onChange(of: carID) { value, inital in
+                                setOdoPrev()
+                            }
+                            
+                            HStack {
+                                
+                                if let car = mileageMasterData.cars!.filter({ $0.id == carID }).first {
+                                    
+                                    Spacer()
+                                    
+                                    VStack {
+                                        
+                                        Text("Plate")
+                                            .font(.subheadline)
+                                            .foregroundStyle(.gray)
+                                            .fontWeight(.bold)
+                                        
+                                        Text(car.plate)
+                                            .font(.subheadline)
+                                            .foregroundStyle(.gray)
+                                        
+                                    }
+                                    
+                                    Spacer()
+                                    
+                                    VStack {
+                                        
+                                        Text("Fuel")
+                                            .font(.subheadline)
+                                            .foregroundStyle(.gray)
+                                            .fontWeight(.bold)
+                                        
+                                        Text(car.fuel)
+                                            .font(.subheadline)
+                                            .foregroundStyle(.gray)
+                                        
+                                    }
+                                    
+                                    Spacer()
+                                    
+                                }
+                                
+                            }
+                            
                         }
+                        
+                        
+                        Section(header: Text("Odometer")) {
+                            
+                            TextField("Previous Odo", value: $odoPrev, format: .number)
+                                .padding()
+                                .keyboardType(.numberPad)
+                                .frame(width: 300)
+                            
+                            TextField("Current Odo", value: $odoCurr, format: .number)
+                                .padding()
+                                .keyboardType(.numberPad)
+                                .frame(width: 300)
+                            
+                        }
+                        
+                        Section(header: Text("Data")) {
+                            
+                            TextField("Liters", value: $liters, format: .number)
+                                .padding()
+                                .keyboardType(.numbersAndPunctuation)
+                                .frame(width: 300)
+                            
+                            TextField("Total Price", value: $totalPrice, format: .currency(code: "$"))
+                                .padding()
+                                .keyboardType(.numbersAndPunctuation)
+                                .frame(width: 300)
+                            
+                            TextField("Station", text: $station)
+                                .padding()
+                                .frame(width: 300)
+                            
+                        }
+                        
+                        Section(header: Text("Notes")) {
+                            
+                            TextField("Notes", text: $notes)
+                                .padding()
+                                .frame(width: 300)
+                            
+                        }
+                        
+                        
+                        
                     }
-                    .pickerStyle(.menu)
-                    
-                    TextField("Previous Odo", value: $odoPrev, format: .number)
-                        .keyboardType(.numberPad)
-                        .textFieldStyle(.roundedBorder)
-                        .frame(width: 300)
-                    
-                    TextField("Current Odo", value: $odoCurr, format: .number)
-                        .keyboardType(.numberPad)
-                        .textFieldStyle(.roundedBorder)
-                        .frame(width: 300)
-                    
-                    TextField("Liters", value: $liters, format: .number)
-                        .keyboardType(.numberPad)
-                        .textFieldStyle(.roundedBorder)
-                        .frame(width: 300)
-                    
-                    TextField("Total Price", value: $totalPrice, format: .currency(code: "$"))
-                        .keyboardType(.numberPad)
-                        .textFieldStyle(.roundedBorder)
-                        .frame(width: 300)
-                    
-                    TextField("Station", text: $station)
-                        .textFieldStyle(.roundedBorder)
-                        .frame(width: 300)
-                    
-                    TextField("Notes", text: $notes)
-                        .textFieldStyle(TextArea())
-                        .frame(width: 300)
+                    .scrollContentBackground(.hidden)
+                    .background(Colors.shared.background)
                     
                     Button() {
-                        // not getting alert when second requirement isn't met
-                        
-                        print("clicked button")
-                        
                         if  odoCurr != nil &&
                                 odoPrev != nil &&
                                 liters != nil &&
                                 totalPrice != nil &&
                                 carID != nil
                         {
-                            print("meets first requirements")
                             
                             if odoCurr! < odoPrev! {
                                 showAlert(title: "That Odometer Isn't Right!", message: "The current odometer reading cannot be less than the previous odometer reading.")
                             } else {
-                                print("meets second requirements")
                                 
                                 let entryController = EntryController()
                                 Task {
                                     let createdEntry: Entry? = await entryController.createEntry(odoCurr: odoCurr!, odoPrev: odoPrev!, liters: liters!, totalPrice: totalPrice!, station: station, notes: notes, carID: carID!)
-                                    print(createdEntry ?? "nil")
                                     if createdEntry == nil {
                                         showAlert(title: "Unknown Error", message: "There was an error. Please try again.")
                                     } else {
-                                        let entryController = EntryController()
                                         entryController.loadEntries()
                                         showSuccess = true
                                     }
@@ -133,6 +210,7 @@ struct NewRefillLog: View {
                     } label: {
                         Text("Create")
                     }
+                    .frame(maxWidth: .infinity)
                     .padding()
                     .background(Color.accentColor)
                     .foregroundStyle(.white)
@@ -164,6 +242,8 @@ struct NewRefillLog: View {
                         .multilineTextAlignment(.center)
                         .opacity(successOpacity)
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .ignoresSafeArea()
                 .onAppear() {
                     withAnimation(.easeIn(duration: 1)) {
                         successOpacity = 1.0
@@ -173,14 +253,17 @@ struct NewRefillLog: View {
             
         }
         .padding()
+        .background(Colors.shared.background)
         .onAppear() {
-            if carID == nil, let firstCarID = mileageMasterData.cars?.first?.id {
-                carID = firstCarID
+            carID = preferedCarID
+            
+            if carID == nil {
+                if let firstCarID = mileageMasterData.cars?.first?.id {
+                    carID = firstCarID
+                }
             }
             
-            if let lastEntry = mileageMasterData.entries?.last {
-                odoPrev = lastEntry.odoCurr
-            }
+            setOdoPrev()
         }
         
     }

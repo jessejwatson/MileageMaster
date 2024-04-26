@@ -9,17 +9,18 @@ import Foundation
 
 struct Account: Codable, Identifiable {
     let id: String
-    let name: String
     let email: String
-    let cars: [SmallCar]
-}
-
-struct SmallAccount: Codable, Identifiable {
-    let id: String
     let name: String
-    let email: String
 }
 
 struct Accounts: Codable {
     let accounts: [Account]
+}
+
+struct AccountResponse: Codable {
+    let account: Account
+}
+
+struct CreateAccount: Codable {
+    let createAccount: Account
 }

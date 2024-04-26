@@ -24,8 +24,7 @@ struct Car: Codable, Identifiable, Hashable {
     let plate: String
     let name: String
     let fuel: String
-    let accounts: [SmallAccount]
-    let entries: [SmallEntry]
+    let accounts: [Account]
 }
 
 struct SmallCar: Codable, Identifiable, Hashable {
@@ -37,4 +36,16 @@ struct SmallCar: Codable, Identifiable, Hashable {
 
 struct Cars: Codable {
     let cars: [Car]
+}
+
+struct CreateCar: Codable {
+    let createCar: Car
+}
+
+struct DeleteCar: Codable {
+    let deleteCar: SmallCar
+}
+
+struct UpdateCar: Codable {
+    let updateCar: SmallCar
 }

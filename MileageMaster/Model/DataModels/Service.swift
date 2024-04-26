@@ -29,3 +29,11 @@ struct SmallService: Codable, Identifiable {
 struct Services: Codable {
     let services: [Service]
 }
+
+struct DeleteService: Codable {
+    let deleteService: SmallService
+}
+
+struct DeleteManyServicesConnection: Codable {
+    let deleteManyServicesConnection: Edges<SmallService>
+}

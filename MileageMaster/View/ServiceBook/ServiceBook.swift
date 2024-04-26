@@ -16,10 +16,22 @@ struct ServiceBook: View {
         if mileageMasterData.services != nil {
             NavigationView {
                 
-                List(mileageMasterData.services!) { service in
-                    Text("\(service.date)")
+                if mileageMasterData.account == nil || mileageMasterData.cars == nil || mileageMasterData.entries == nil || mileageMasterData.services == nil {
+                    
+                    Loader("LOADING")
+                    
+                } else {
+                    
+                    List(mileageMasterData.services!) { service in
+                        Text("\(service.date)")
+                    }
+                    
                 }
                 
+            }
+            .refreshable {
+                let serviceController = ServiceController()
+                serviceController.loadServices()
             }
         } else {
             Text("No services yet!")

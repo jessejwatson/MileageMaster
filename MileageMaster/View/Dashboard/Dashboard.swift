@@ -9,72 +9,37 @@ import SwiftUI
 
 struct Dashboard: View {
     
+    @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var mileageMasterData: MileageMasterData
+    
+    @State private var showAddOptions = false
+    @State private var showNewService = false
+    @State private var showNewRefill = false
     
     var body: some View {
         
         NavigationView {
-            VStack {
+            
+            if mileageMasterData.account == nil || mileageMasterData.cars == nil || mileageMasterData.entries == nil || mileageMasterData.services == nil {
                 
-                HStack {
-                    
-                    Spacer()
-                    
-                    OpenViewBtn(icon: "plus.circle.fill", text: "New Service") {
-                        Loader("testing...")
-                    }
-                    
-                    Spacer()
-                    
-                    OpenViewBtn(icon: "fuelpump.fill", text: "New Refill", color: Color.orange) {
-                        NewRefillLog()
-                    }
-                    
-                    Spacer()
-                    
-                }
-                .padding(.bottom)
+                Loader("LOADING")
+                
+            } else {
                 
                 ScrollView {
+                    
                     VStack {
                         
-                        Text("Upcoming")
-                            .font(.title)
-                            .fontWeight(.bold)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        
-                        // Temporary data for upcoming reminders
-                        let mockReminderData: [String] = ["Service Due!", "You must be gettin low on fuel."]
-                        
-                        LazyVStack(spacing: 0) {
-                            ForEach(mockReminderData, id: \.self) { reminder in
-                                HStack {
-                                    Image(systemName: "bell.fill")
-                                        .foregroundStyle(.yellow)
-                                    Text(reminder)
-                                    Spacer()
-                                }
-                                .padding()
-                                Divider()
-                            }
-                        }
-                        .background(Color(UIColor.systemBackground))
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .shadow(color: .gray.opacity(0.3), radius: 5, x: 0, y: 0)
-                        .padding()
-                        
-                        Spacer()
-                        
-                        Text("Recent")
-                            .font(.title)
-                            .fontWeight(.bold)
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                        // --- Last 3 Entries
                         
                         LazyVStack(spacing: 0) {
                             ForEach(Array(mileageMasterData.entries!.reversed().prefix(3).enumerated()), id: \.element.id) { index, entry in
                                 
                                 EntryListItem(entry)
                                     .padding()
+                                    .contextMenu { } preview: {
+                                        EntryView(entry)
+                                    }
                                 
                                 if index != mileageMasterData.entries!.reversed().prefix(3).count - 1 {
                                     Divider()
@@ -82,16 +47,16 @@ struct Dashboard: View {
                                 
                             }
                         }
-                        .background(Color(UIColor.systemBackground))
+                        .background(Colors.shared.backgroundSecondary)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .shadow(color: .gray.opacity(0.3), radius: 5, x: 0, y: 0)
+                        .shadow(color: colorScheme == .light ? .gray.opacity(0.3) : .clear, radius: colorScheme == .light ? 5 : 0, x: 0, y: 0)
                         .padding()
                         
-                        // graphs here...
-                        // -- Liters Per 100km
+                        // --- Graphs
+                        
                         if mileageMasterData.cars != nil && mileageMasterData.entries != nil {
                             ForEach(mileageMasterData.cars!, id: \.id) { car in
-
+                                
                                 EconomyGraph(car: car)
                                 DollarPerKMGraph(car: car)
                                 DollarPerLiterGraph(car: car)
@@ -102,11 +67,53 @@ struct Dashboard: View {
                         Spacer()
                         
                     }
+                    
                 }
+                .navigationTitle("Dashboard")
+                .toolbar {
+                    ToolbarItemGroup(placement: .topBarTrailing) {
+                        AddButton(showSheet: $showAddOptions)
+                    }
+                }
+                .padding([.leading, .trailing])
+                .scrollIndicators(.hidden)
                 
             }
-            .padding(.leading)
-            .padding(.trailing)
+            
+        }
+        .refreshable {
+            let carController = CarController()
+            carController.loadCars()
+            
+            let entryController = EntryController()
+            entryController.loadEntries()
+            
+            let serviceController = ServiceController()
+            serviceController.loadServices()
+        }
+        .confirmationDialog(
+            "What would you like to add?",
+            isPresented: $showAddOptions,
+            titleVisibility: .visible
+        ) {
+            Button("New Refill") {
+                showNewRefill = true
+            }
+            Button("New Service") {
+                showNewService = true
+            }
+        }
+        .sheet(isPresented: $showNewService) {
+            Loader("Waiting for developer to do something here...")
+                .onDisappear() {
+                    showNewService = false
+                }
+        }
+        .sheet(isPresented: $showNewRefill) {
+            NewRefillLog()
+                .onDisappear() {
+                    showNewRefill = false
+                }
         }
     }
 }
