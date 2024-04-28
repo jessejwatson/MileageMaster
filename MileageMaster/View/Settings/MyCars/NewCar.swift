@@ -82,7 +82,7 @@ struct NewCar: View {
                         
                         let carController = CarController()
                         Task {
-                            let createdCar = await carController.createCar(name: name, plate: plate, fuel: fuel)
+                            let createdCar = await carController.createCar(name: name, plate: plate, fuel: fuel, year: 2000, serviceIntervalKM: 5000, serviceIntervalMonth: 12)
                             if createdCar == nil {
                                 showAlert(title: "Unknown Error", message: "There was an error. Please try again.")
                             } else {
@@ -106,7 +106,7 @@ struct NewCar: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 80, height: 80)
-                        .foregroundStyle(Color.accentColor.opacity(successOpacity * 0.7))
+                        .foregroundStyle(Colors.shared.accent)
                         .padding(.bottom)
                     Text("Car Creation Successful!")
                         .font(.largeTitle)

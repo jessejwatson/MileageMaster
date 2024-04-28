@@ -24,6 +24,9 @@ struct Car: Codable, Identifiable, Hashable {
     let plate: String
     let name: String
     let fuel: String
+    let year: Int
+    let serviceIntervalKM: Int
+    let serviceIntervalMonth: Int
     let accounts: [Account]
 }
 
@@ -32,6 +35,9 @@ struct SmallCar: Codable, Identifiable, Hashable {
     let plate: String
     let name: String
     let fuel: String
+    let year: Int
+    let serviceIntervalKM: Int
+    let serviceIntervalMonth: Int
 }
 
 struct Cars: Codable {

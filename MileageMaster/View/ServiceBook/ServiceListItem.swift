@@ -1,5 +1,5 @@
 //
-//  EntryView.swift
+//  ServiceListItem.swift
 //  MileageMaster
 //
 //  Created by Jesse Watson on 15/04/2024.
@@ -7,23 +7,23 @@
 
 import SwiftUI
 
-struct EntryListItem: View {
+struct ServiceListItem: View {
     
-    let entry: Entry
-    private let createdAt: String?
+    let service: Service
+    private let serviceDate: String?
     
-    init(_ entry: Entry) {
-        self.entry = entry
+    init(_ service: Service) {
+        self.service = service
         
         let inputFormatter = DateFormatter()
-        inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSX"
-        if let date = inputFormatter.date(from: entry.createdAt) {
+        inputFormatter.dateFormat = "yyyy-MM-dd"
+        if let date = inputFormatter.date(from: service.date) {
             let outputFormatter = DateFormatter()
             outputFormatter.dateFormat = "EEEE dd/MM/yyyy"
-            self.createdAt = outputFormatter.string(from: date)
+            self.serviceDate = outputFormatter.string(from: date)
         } else {
             print("Error parsing date string")
-            self.createdAt = nil
+            self.serviceDate = nil
         }
     }
     
@@ -34,7 +34,7 @@ struct EntryListItem: View {
     
     // Show
     @State private var showDeleteConfirmation = false
-    
+        
     private func showAlert(title: String, message: String) {
         alertTitle = title
         alertMessage = message
@@ -42,12 +42,12 @@ struct EntryListItem: View {
     }
     
     var body: some View {
-        NavigationLink(destination: EntryView(entry)) {
+        NavigationLink(destination: ServiceView(service)) {
             
             GeometryReader { geometry in
                 VStack {
                     
-                    Text(createdAt != nil ? String(entry.car.name + " on " + createdAt!) : entry.car.name)
+                    Text(serviceDate != nil ? String(service.car.name + " on " + serviceDate!) : service.car.name)
                         .font(.subheadline)
                         .foregroundStyle(.gray)
                         .fontWeight(.bold)
@@ -57,45 +57,36 @@ struct EntryListItem: View {
                         
                         VStack {
                             
+                            // --- Odo
+                            IconWithValue(systemName: "gauge.open.with.lines.needle.33percent", iconColor: Colors.shared.accent, value: String(service.odo) + " km")
+                            
                             // --- Total Price
-                            var totalPrice = String(entry.totalPrice)
-                            IconWithValue(systemName: "dollarsign.circle.fill", iconColor: Color.green, value: "$" + totalPrice)
-                                .onAppear() {
-                                    let numberFormatter = NumberFormatter()
-                                    numberFormatter.numberStyle = .decimal
-                                    let number = numberFormatter.string(from: NSNumber(value: entry.totalPrice))
-                                    if number != nil {
-                                        totalPrice = number!
+                            if service.totalPrice != nil {
+                                var totalPrice = String(service.totalPrice!)
+                                IconWithValue(systemName: "dollarsign.circle.fill", iconColor: Color.green, value: "$" + totalPrice)
+                                    .onAppear() {
+                                        let numberFormatter = NumberFormatter()
+                                        numberFormatter.numberStyle = .decimal
+                                        let number = numberFormatter.string(from: NSNumber(value: service.totalPrice!))
+                                        if number != nil {
+                                            totalPrice = number!
+                                        }
                                     }
-                                }
-                            
-                            // --- Liters
-                            IconWithValue(systemName: "drop.fill", iconColor: Color.blue, value: String(entry.liters) + " l")
-                            
-                            // --- Distance
-                            IconWithValue(systemName: "road.lanes", iconColor: Color.purple, value: String(entry.odoCurr - entry.odoPrev) + " km")
-                            
+                            } else {
+                                IconWithValue(systemName: "dollarsign.circle.fill", iconColor: Color.green, value: "--")
+                            }
+                                                        
                         }
                         .frame(width: geometry.size.width * 0.40)
                         
                         VStack {
                             
-                            // --- Station
-                            IconWithValue(systemName: "mappin.circle.fill", iconColor: Color.red, value: entry.station)
-                            
+                            // --- Oil
+                            IconWithValue(systemName: "drop.fill", iconColor: Color.orange, value: service.oil ?? "--")
+                                                        
                             // --- Notes
-                            var notes = entry.notes ?? "No notes..."
-                            IconWithValue(systemName: "list.clipboard.fill", iconColor: Color.orange, value: notes, lineLimit: 2)
-                                .onAppear() {
-                                    if entry.notes != nil {
-                                        if entry.notes == "" {
-                                            notes = "No notes..."
-                                        }
-                                    }
-                                }
-                            
-                            Spacer()
-                            
+                            IconWithValue(systemName: "list.clipboard.fill", iconColor: Color.orange, value: service.notes ?? "--")
+                                                        
                         }
                         
                     }
@@ -113,7 +104,7 @@ struct EntryListItem: View {
                     }
                 }
             }
-            .frame(height: 90, alignment: .leading)
+            .frame(height: 70, alignment: .leading)
             .alert(isPresented: $showAlert) {
                 
                 // --- Alert Popup
@@ -134,13 +125,13 @@ struct EntryListItem: View {
                 // --- Confirmation Dialog
                 
                 Button(role: .destructive) {
-                    let entryController = EntryController()
+                    let serviceController = ServiceController()
                     Task {
-                        let deletedEntry: Entry? = await entryController.deleteEntry(id: entry.id)
-                        if deletedEntry == nil {
-                            showAlert(title: "Unknown Error", message: "There was an error deleting the log. Please try again.")
+                        let deletedService: SmallService? = await serviceController.deleteService(id: service.id)
+                        if deletedService == nil {
+                            showAlert(title: "Unknown Error", message: "There was an error deleting the service. Please try again.")
                         } else {
-                            entryController.loadEntries()
+                            serviceController.loadServices()
                         }
                     }
                     

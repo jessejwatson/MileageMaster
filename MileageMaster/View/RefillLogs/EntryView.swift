@@ -10,13 +10,28 @@ import SwiftUI
 struct EntryView: View {
     
     let entry: Entry
+    @State private var navigationTitle: String
     
     @discardableResult
     init(_ entry: Entry) {
         self.entry = entry
+        
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSX"
+        inputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        inputFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        if let date = inputFormatter.date(from: entry.createdAt) {
+            let outputFormatter = DateFormatter()
+            outputFormatter.dateFormat = "EEEE dd/MM/yyyy"
+            
+            self.navigationTitle = outputFormatter.string(from: date)
+        } else {
+            print("Error parsing date string")
+            self.navigationTitle = "Log"
+        }
     }
     
-    @State private var createdAt: String?
+    @Environment(\.presentationMode) var presentationMode
     
     private struct EditMode {
         var odoPrev = false
@@ -40,6 +55,9 @@ struct EntryView: View {
     @State private var alertTitle = ""
     @State private var alertMessage = ""
     @State private var showAlert = false
+    
+    // Show
+    @State private var showDeleteConfirmation = false
     
     // Focus
     private enum Field: Int, Hashable {
@@ -176,7 +194,6 @@ struct EntryView: View {
                     TextField("Odo Curr", value: $odoCurr, format: .number)
                         .keyboardType(.numberPad)
                         .focused($focusedField, equals: .odoCurr)
-                        .textFieldStyle(.roundedBorder)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .onAppear() {
                             odoCurr = entry.odoCurr
@@ -547,31 +564,62 @@ struct EntryView: View {
             
             Spacer()
             
-            
         }
         .background(Colors.shared.background)
-        .navigationTitle(createdAt ?? "Log")
+        .navigationTitle(navigationTitle)
+        .toolbar {
+            ToolbarItemGroup(placement: .topBarTrailing) {
+                
+                // --- Delete Button
+                
+                Button {
+                    showDeleteConfirmation = true
+                } label: {
+                    Image(systemName: "trash")
+                        .foregroundStyle(.red)
+                }
+                
+            }
+        }
         .alert(isPresented: $showAlert) {
+            
+            // --- Alert Popup
+            
             Alert(
                 title: Text(alertTitle),
                 message: Text(alertMessage),
                 dismissButton: .default(Text("Dismiss"))
             )
         }
-        .onAppear() {
-            let inputFormatter = DateFormatter()
-            inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSX"
-            inputFormatter.locale = Locale(identifier: "en_US_POSIX")
-            inputFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-            if let date = inputFormatter.date(from: entry.createdAt) {
-                let outputFormatter = DateFormatter()
-                outputFormatter.dateFormat = "EEEE dd/MM/yyyy"
-                
-                createdAt = outputFormatter.string(from: date)
-            } else {
-                print("Error parsing date string")
+        .confirmationDialog(
+            "Are you sure you want to delete this log?",
+            isPresented: $showDeleteConfirmation,
+            titleVisibility: .visible
+        ) {
+            
+            // --- Confirmation Dialog
+            
+            Button(role: .destructive) {
+                let entryController = EntryController()
+                Task {
+                    let deletedEntry: Entry? = await entryController.deleteEntry(id: entry.id)
+                    if deletedEntry == nil {
+                        showAlert(title: "Unknown Error", message: "There was an error deleting the log. Please try again.")
+                    } else {
+                        let entryController = EntryController()
+                        entryController.loadEntries()
+                    }
+                }
+                presentationMode.wrappedValue.dismiss()
+            } label: {
+                Text("Delete")
+                    .foregroundStyle(.red)
             }
+            
+            Button("Cancel", role: .cancel) {}
+            
         }
+        
     }
     
     private struct Icon: View {

@@ -18,6 +18,9 @@ class CarController {
                             plate
                             name
                             fuel
+                            year
+                            serviceIntervalKM
+                            serviceIntervalMonth
                             accounts {
                               id
                               name
@@ -39,14 +42,17 @@ class CarController {
     
     private let CREATE_CAR =
                         """
-                        mutation CreateCar($email: String!, $name: String!, $plate: String!, $fuel: String!) {
+                        mutation CreateCar($email: String!, $name: String!, $plate: String!, $fuel: String!, $year: Int!, $serviceIntervalKM: Int!, $serviceIntervalMonth: Int!) {
                           createCar(
-                            data: {name: $name, plate: $plate, fuel: $fuel, accounts: {connect: {email: $email}}}
+                            data: {name: $name, plate: $plate, fuel: $fuel, serviceIntervalKM: $serviceIntervalKM, serviceIntervalMonth: $serviceIntervalMonth, accounts: {connect: {email: $email}}}
                           ) {
                             id
                             name
                             plate
                             fuel
+                            year
+                            serviceIntervalKM
+                            serviceIntervalMonth
                             accounts {
                               id
                               email
@@ -76,6 +82,8 @@ class CarController {
                             plate
                             name
                             fuel
+                            serviceIntervalKM
+                            serviceIntervalMonth
                           }
                         }
                         """
@@ -91,12 +99,15 @@ class CarController {
         }
     }
     
-    func createCar(name: String, plate: String, fuel: String) async -> Car? {
+    func createCar(name: String, plate: String, fuel: String, year: Int, serviceIntervalKM: Int, serviceIntervalMonth: Int) async -> Car? {
         let graphQLRequest = GraphQLRequest<GraphQLResponse<CreateCar>>(query: CREATE_CAR, variables: [
             (key: "email", value: .string(email)),
             (key: "name", value: .string(name)),
             (key: "plate", value: .string(plate)),
-            (key: "fuel", value: .string(fuel))
+            (key: "fuel", value: .string(fuel)),
+            (key: "year", value: .int(year)),
+            (key: "serviceIntervalKM", value: .int(serviceIntervalKM)),
+            (key: "serviceIntervalMonth", value: .int(serviceIntervalMonth))
         ])
         do {
             let response = try await graphQLRequest.run()
@@ -157,6 +168,8 @@ class CarController {
                             plate
                             name
                             fuel
+                            serviceIntervalKM
+                            serviceIntervalMonth
                           }
                         
                           publishManyCarsConnection(

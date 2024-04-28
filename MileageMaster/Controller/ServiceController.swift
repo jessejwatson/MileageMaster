@@ -17,6 +17,7 @@ class ServiceController {
                                 id
                                 createdAt
                                 date
+                                odo
                                 totalPrice
                                 oil
                                 notes
@@ -25,6 +26,9 @@ class ServiceController {
                                   name
                                   plate
                                   fuel
+                                  year
+                                  serviceIntervalKM
+                                  serviceIntervalMonth
                                 }
                               }
                             }
@@ -37,6 +41,7 @@ class ServiceController {
                                 id
                                 createdAt
                                 date
+                                odo
                                 totalPrice
                                 oil
                                 notes
@@ -48,6 +53,44 @@ class ServiceController {
                             """
                             mutation DeleteManyServices($id: ID) {
                               deleteManyServicesConnection(where: {car: $id}) {
+                                edges {
+                                  node {
+                                    id
+                                  }
+                                }
+                              }
+                            }
+                            """
+    
+    private let CREATE_SERVICE =
+                            """
+                            mutation CreateService($date: Date!, $odo: Int!, $totalPrice: Float, $oil: String, $notes: String, $carID: ID) {
+                              createService(
+                                data: {date: $date, odo: $odo, totalPrice: $totalPrice, oil: $oil, notes: $notes, car: {connect: {id: $carID}}}
+                              ) {
+                                id
+                                createdAt
+                                date
+                                odo
+                                totalPrice
+                                oil
+                                notes
+                                car {
+                                  id
+                                  name
+                                  plate
+                                  fuel
+                                  year
+                                  serviceIntervalKM
+                                  serviceIntervalMonth
+                                }
+                              }
+                            
+                              publishManyServicesConnection(
+                                to: PUBLISHED
+                                last: 100
+                                where: {car: {id: $carID}}
+                              ) {
                                 edges {
                                   node {
                                     id
@@ -88,6 +131,24 @@ class ServiceController {
         } catch {
             print("Failure deleting services: \(error.localizedDescription)\n\(error)")
             return []
+        }
+    }
+    
+    func createService(date: Date, odo: Int, totalPrice: Double, oil: String, notes: String, carID: String) async -> Service? {
+        let graphQLRequest = GraphQLRequest<GraphQLResponse<CreateService>>(query: CREATE_SERVICE, variables: [
+            (key: "date", value: .date(date)),
+            (key: "odo", value: .int(odo)),
+            (key: "totalPrice", value: .double(totalPrice)),
+            (key: "oil", value: .string(oil)),
+            (key: "notes", value: .string(notes)),
+            (key: "carID", value: .string(carID))
+        ])
+        do {
+            let response = try await graphQLRequest.run()
+            return response.data.createService
+        } catch {
+            print("Failure creating serice: \(error.localizedDescription)\n\(error)")
+            return nil
         }
     }
     

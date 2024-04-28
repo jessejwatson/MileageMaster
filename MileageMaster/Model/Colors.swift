@@ -32,4 +32,9 @@ class Colors: ObservableObject {
         UserDefaultsController.shared.cacheAccentColor(accent: color)
     }
     
+    func resetAccentColor() {
+        self.accent = Color.accent
+        UserDefaultsController.shared.cacheAccentColor(accent: Color.accent)
+    }
+    
 }

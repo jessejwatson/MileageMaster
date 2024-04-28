@@ -16,15 +16,16 @@
 		DC43B96A2BCD1B1E00F0145D /* EntryListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43B9692BCD1B1E00F0145D /* EntryListItem.swift */; };
 		DC43B96C2BCD257100F0145D /* EntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC43B96B2BCD257100F0145D /* EntryView.swift */; };
 		DC485CEC2BD8E673005E5F7D /* PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC485CEB2BD8E673005E5F7D /* PullToRefresh.swift */; };
+		DC63C4E12BDCD67200B5DB4C /* ServiceListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC63C4E02BDCD67200B5DB4C /* ServiceListItem.swift */; };
+		DC63C4E32BDCDFD100B5DB4C /* NewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC63C4E22BDCDFD100B5DB4C /* NewService.swift */; };
+		DC63C4E52BDCE07800B5DB4C /* ServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC63C4E42BDCE07800B5DB4C /* ServiceView.swift */; };
+		DC63C4E72BDCE15400B5DB4C /* IconWithValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC63C4E62BDCE15400B5DB4C /* IconWithValue.swift */; };
 		DC65C3312BCA6746001990F9 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = DC65C3302BCA6746001990F9 /* GoogleSignIn */; };
 		DC65C3332BCA6746001990F9 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DC65C3322BCA6746001990F9 /* GoogleSignInSwift */; };
 		DC7539F52BD20B89002A0277 /* NewRefillLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7539F42BD20B89002A0277 /* NewRefillLog.swift */; };
 		DC78B5702B9BBEB400A8D964 /* MileageMasterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC78B56F2B9BBEB400A8D964 /* MileageMasterApp.swift */; };
 		DC78B5742B9BBEB600A8D964 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC78B5732B9BBEB600A8D964 /* Assets.xcassets */; };
 		DC78B5772B9BBEB600A8D964 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC78B5762B9BBEB600A8D964 /* Preview Assets.xcassets */; };
-		DC78B5812B9BBEB600A8D964 /* MileageMasterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC78B5802B9BBEB600A8D964 /* MileageMasterTests.swift */; };
-		DC78B58B2B9BBEB600A8D964 /* MileageMasterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC78B58A2B9BBEB600A8D964 /* MileageMasterUITests.swift */; };
-		DC78B58D2B9BBEB600A8D964 /* MileageMasterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC78B58C2B9BBEB600A8D964 /* MileageMasterUITestsLaunchTests.swift */; };
 		DC78B5A12B9BC0FA00A8D964 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC78B5A02B9BC0FA00A8D964 /* Main.swift */; };
 		DC78B5A52B9BC59300A8D964 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC78B5A42B9BC59300A8D964 /* Dashboard.swift */; };
 		DC78B5A72B9BC59D00A8D964 /* ServiceBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC78B5A62B9BC59D00A8D964 /* ServiceBook.swift */; };
@@ -50,6 +51,7 @@
 		DC8687D12BDB893D00EC572F /* FullWidthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8687D02BDB893D00EC572F /* FullWidthButton.swift */; };
 		DCBE85242BCCE0BA00DC64E5 /* MileageMasterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBE85232BCCE0BA00DC64E5 /* MileageMasterData.swift */; };
 		DCD145372BD76F390030772C /* GraphQLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD145362BD76F390030772C /* GraphQLResponse.swift */; };
+		DCD1DBC82BDDF9C4004E2418 /* Date+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD1DBC72BDDF9C4004E2418 /* Date+EXT.swift */; };
 		DCD75CE02BD0C47A007E137D /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD75CDF2BD0C47A007E137D /* Service.swift */; };
 		DCD75CE22BD0C58E007E137D /* ServiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD75CE12BD0C58E007E137D /* ServiceController.swift */; };
 		DCD97F562BA28979002DAFE5 /* MyCars.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD97F552BA28979002DAFE5 /* MyCars.swift */; };
@@ -85,16 +87,17 @@
 		DC43B9692BCD1B1E00F0145D /* EntryListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryListItem.swift; sourceTree = "<group>"; };
 		DC43B96B2BCD257100F0145D /* EntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryView.swift; sourceTree = "<group>"; };
 		DC485CEB2BD8E673005E5F7D /* PullToRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToRefresh.swift; sourceTree = "<group>"; };
+		DC63C4E02BDCD67200B5DB4C /* ServiceListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceListItem.swift; sourceTree = "<group>"; };
+		DC63C4E22BDCDFD100B5DB4C /* NewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewService.swift; sourceTree = "<group>"; };
+		DC63C4E42BDCE07800B5DB4C /* ServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceView.swift; sourceTree = "<group>"; };
+		DC63C4E62BDCE15400B5DB4C /* IconWithValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconWithValue.swift; sourceTree = "<group>"; };
 		DC7539F42BD20B89002A0277 /* NewRefillLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRefillLog.swift; sourceTree = "<group>"; };
 		DC78B56C2B9BBEB400A8D964 /* MileageMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MileageMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC78B56F2B9BBEB400A8D964 /* MileageMasterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileageMasterApp.swift; sourceTree = "<group>"; };
 		DC78B5732B9BBEB600A8D964 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC78B5762B9BBEB600A8D964 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DC78B57C2B9BBEB600A8D964 /* MileageMasterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MileageMasterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DC78B5802B9BBEB600A8D964 /* MileageMasterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileageMasterTests.swift; sourceTree = "<group>"; };
 		DC78B5862B9BBEB600A8D964 /* MileageMasterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MileageMasterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DC78B58A2B9BBEB600A8D964 /* MileageMasterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileageMasterUITests.swift; sourceTree = "<group>"; };
-		DC78B58C2B9BBEB600A8D964 /* MileageMasterUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileageMasterUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		DC78B5A02B9BC0FA00A8D964 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		DC78B5A42B9BC59300A8D964 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		DC78B5A62B9BC59D00A8D964 /* ServiceBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceBook.swift; sourceTree = "<group>"; };
@@ -117,6 +120,7 @@
 		DC8687D02BDB893D00EC572F /* FullWidthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullWidthButton.swift; sourceTree = "<group>"; };
 		DCBE85232BCCE0BA00DC64E5 /* MileageMasterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileageMasterData.swift; sourceTree = "<group>"; };
 		DCD145362BD76F390030772C /* GraphQLResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLResponse.swift; sourceTree = "<group>"; };
+		DCD1DBC72BDDF9C4004E2418 /* Date+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+EXT.swift"; sourceTree = "<group>"; };
 		DCD75CDF2BD0C47A007E137D /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		DCD75CE12BD0C58E007E137D /* ServiceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceController.swift; sourceTree = "<group>"; };
 		DCD97F552BA28979002DAFE5 /* MyCars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCars.swift; sourceTree = "<group>"; };
@@ -172,8 +176,6 @@
 			isa = PBXGroup;
 			children = (
 				DC78B56E2B9BBEB400A8D964 /* MileageMaster */,
-				DC78B57F2B9BBEB600A8D964 /* MileageMasterTests */,
-				DC78B5892B9BBEB600A8D964 /* MileageMasterUITests */,
 				DC78B56D2B9BBEB400A8D964 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -208,23 +210,6 @@
 				DC78B5762B9BBEB600A8D964 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		DC78B57F2B9BBEB600A8D964 /* MileageMasterTests */ = {
-			isa = PBXGroup;
-			children = (
-				DC78B5802B9BBEB600A8D964 /* MileageMasterTests.swift */,
-			);
-			path = MileageMasterTests;
-			sourceTree = "<group>";
-		};
-		DC78B5892B9BBEB600A8D964 /* MileageMasterUITests */ = {
-			isa = PBXGroup;
-			children = (
-				DC78B58A2B9BBEB600A8D964 /* MileageMasterUITests.swift */,
-				DC78B58C2B9BBEB600A8D964 /* MileageMasterUITestsLaunchTests.swift */,
-			);
-			path = MileageMasterUITests;
 			sourceTree = "<group>";
 		};
 		DC78B5992B9BBF0400A8D964 /* Model */ = {
@@ -298,6 +283,9 @@
 			isa = PBXGroup;
 			children = (
 				DC78B5A62B9BC59D00A8D964 /* ServiceBook.swift */,
+				DC63C4E02BDCD67200B5DB4C /* ServiceListItem.swift */,
+				DC63C4E22BDCDFD100B5DB4C /* NewService.swift */,
+				DC63C4E42BDCE07800B5DB4C /* ServiceView.swift */,
 			);
 			path = ServiceBook;
 			sourceTree = "<group>";
@@ -307,6 +295,7 @@
 			children = (
 				DC8687BC2BDB06EE00EC572F /* UIApplication+EXT.swift */,
 				DC8687CE2BDB791400EC572F /* Color+EXT.swift */,
+				DCD1DBC72BDDF9C4004E2418 /* Date+EXT.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -329,6 +318,7 @@
 				DC78B5AC2B9C02AD00A8D964 /* LineGraph.swift */,
 				DC78B5AE2B9C3EBD00A8D964 /* ChartContainer.swift */,
 				DCD9A2332BCE1B44000DBBED /* OpenViewBtn.swift */,
+				DC63C4E62BDCE15400B5DB4C /* IconWithValue.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -498,7 +488,9 @@
 				DC8687D12BDB893D00EC572F /* FullWidthButton.swift in Sources */,
 				DC78B5A12B9BC0FA00A8D964 /* Main.swift in Sources */,
 				DC78B5A52B9BC59300A8D964 /* Dashboard.swift in Sources */,
+				DC63C4E12BDCD67200B5DB4C /* ServiceListItem.swift in Sources */,
 				DC8687C22BDB10DD00EC572F /* AccountController.swift in Sources */,
+				DC63C4E32BDCDFD100B5DB4C /* NewService.swift in Sources */,
 				DC43B9682BCD1A1F00F0145D /* Loader.swift in Sources */,
 				DCD97F562BA28979002DAFE5 /* MyCars.swift in Sources */,
 				DC78B5702B9BBEB400A8D964 /* MileageMasterApp.swift in Sources */,
@@ -512,10 +504,12 @@
 				DC8687BD2BDB06EE00EC572F /* UIApplication+EXT.swift in Sources */,
 				DCFAE94C2BD7590700E69A67 /* GraphQLRequest.swift in Sources */,
 				DC485CEC2BD8E673005E5F7D /* PullToRefresh.swift in Sources */,
+				DC63C4E72BDCE15400B5DB4C /* IconWithValue.swift in Sources */,
 				DC2A9DC12BA053B50018563A /* Entry.swift in Sources */,
 				DC8687C72BDB305E00EC572F /* NewCar.swift in Sources */,
 				DCD75CE02BD0C47A007E137D /* Service.swift in Sources */,
 				DC78B5AF2B9C3EBD00A8D964 /* ChartContainer.swift in Sources */,
+				DCD1DBC82BDDF9C4004E2418 /* Date+EXT.swift in Sources */,
 				DC8687AF2BDAFC4500EC572F /* SignInWithGoogleHelper.swift in Sources */,
 				DC8687BA2BDB045200EC572F /* AuthView.swift in Sources */,
 				DC8687C02BDB0CE200EC572F /* AuthController.swift in Sources */,
@@ -525,6 +519,7 @@
 				DC8687CD2BDB71F800EC572F /* Colors.swift in Sources */,
 				DCD75CE22BD0C58E007E137D /* ServiceController.swift in Sources */,
 				DC78B5AB2B9BC5B500A8D964 /* Settings.swift in Sources */,
+				DC63C4E52BDCE07800B5DB4C /* ServiceView.swift in Sources */,
 				DC78B5A92B9BC5AE00A8D964 /* RefillLogs.swift in Sources */,
 				DC2A9DBD2BA050340018563A /* Car.swift in Sources */,
 				DC43B9642BCD091E00F0145D /* CarController.swift in Sources */,
@@ -539,7 +534,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC78B5812B9BBEB600A8D964 /* MileageMasterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,8 +541,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC78B58B2B9BBEB600A8D964 /* MileageMasterUITests.swift in Sources */,
-				DC78B58D2B9BBEB600A8D964 /* MileageMasterUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,6 +16,32 @@ struct Dashboard: View {
     @State private var showNewService = false
     @State private var showNewRefill = false
     
+    private func getServiceDue(lastService: Service) -> String {
+        
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "yyyy-MM-dd"
+        inputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        inputFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        guard let lastServiceDate = inputFormatter.date(from: lastService.date) else {
+            print("There was an error getting the service date.")
+            return "could not calculate next service"
+        }
+        
+        let calendar = Calendar.current
+        guard let nextServiceDate = calendar.date(byAdding: .month, value: lastService.car.serviceIntervalMonth, to: lastServiceDate) else {
+            print("There was an error creating the next service date.")
+            return "could not calculate next service"
+        }
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateFormat = "MMMM yyyy"
+        let nextServiceDateFormatted = outputFormatter.string(from: nextServiceDate)
+        
+        let nextServiceKM = lastService.odo + lastService.car.serviceIntervalKM
+        
+        return "\(nextServiceDateFormatted) or at \(nextServiceKM) kilometers"
+        
+    }
+    
     var body: some View {
         
         NavigationView {
@@ -30,27 +56,82 @@ struct Dashboard: View {
                     
                     VStack {
                         
-                        // --- Last 3 Entries
+                        // --- Last Service
                         
                         LazyVStack(spacing: 0) {
-                            ForEach(Array(mileageMasterData.entries!.reversed().prefix(3).enumerated()), id: \.element.id) { index, entry in
+                            
+                            Text("Last Service")
+                                .font(.headline)
+                                .fontWeight(.bold)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding([.leading, .top, .trailing])
+                            
+                            if mileageMasterData.services!.count > 0 {
                                 
-                                EntryListItem(entry)
-                                    .padding()
-                                    .contextMenu { } preview: {
-                                        EntryView(entry)
-                                    }
+                                let lastService = mileageMasterData.services!.reversed()[0]
                                 
-                                if index != mileageMasterData.entries!.reversed().prefix(3).count - 1 {
-                                    Divider()
+                                ServiceListItem(lastService)
+                                    .padding([.leading, .trailing])
+                                    .padding([.top, .bottom], 4)
+                                
+                                Divider()
+                                
+                                HStack {
+                                    Text("Next Service:")
+                                        .font(.caption)
+                                        .fontWeight(.bold)
+                                        .foregroundStyle(Colors.shared.textSecondary)
+                                               
+                                    
+                                    Text(getServiceDue(lastService: lastService))
+                                        .font(.caption)
+                                        .foregroundStyle(Colors.shared.textSecondary)
+                                    
+                                    Spacer()
                                 }
+                                .padding([.leading, .top, .trailing])
                                 
+                            } else {
+                                Text("You have no services yet.")
+                                    .font(.subheadline)
+                                    .foregroundStyle(Colors.shared.textSecondary)
+                                    .padding()
                             }
                         }
+                        .padding(.bottom)
                         .background(Colors.shared.backgroundSecondary)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .shadow(color: colorScheme == .light ? .gray.opacity(0.3) : .clear, radius: colorScheme == .light ? 5 : 0, x: 0, y: 0)
-                        .padding()
+                        .padding([.leading, .trailing])
+                        
+                        // --- Last 2 Entries
+                        
+                        LazyVStack(spacing: 0) {
+                            
+                            Text("Recent Refill Logs")
+                                .font(.headline)
+                                .fontWeight(.bold)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding([.leading, .top, .trailing])
+                            
+                            ForEach(Array(mileageMasterData.entries!.reversed().prefix(2).enumerated()), id: \.element.id) { index, entry in
+                                
+                                EntryListItem(entry)
+                                    .padding([.leading, .trailing])
+                                    .padding([.top, .bottom], 4)
+                                
+                                /*if index != mileageMasterData.entries!.reversed().prefix(2).count - 1 {
+                                    Divider()
+                                }*/
+                                
+                            }
+                            
+                        }
+                        .padding(.bottom)
+                        .background(Colors.shared.backgroundSecondary)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .shadow(color: colorScheme == .light ? .gray.opacity(0.3) : .clear, radius: colorScheme == .light ? 5 : 0, x: 0, y: 0)
+                        .padding([.leading, .trailing])
                         
                         // --- Graphs
                         
@@ -104,7 +185,7 @@ struct Dashboard: View {
             }
         }
         .sheet(isPresented: $showNewService) {
-            Loader("Waiting for developer to do something here...")
+            NewService()
                 .onDisappear() {
                     showNewService = false
                 }
@@ -230,8 +311,4 @@ struct DollarPerKMGraph: View {
         }
     }
     
-}
-
-#Preview {
-    Dashboard()
 }

@@ -19,6 +19,7 @@ class GraphQLRequest<T: Codable> {
         case bool(Bool)
         case int(Int)
         case double(Double)
+        case date(Date)
     }
         
     init(query: String, variables: [(key: String, value: Value)]) {
@@ -37,6 +38,12 @@ class GraphQLRequest<T: Codable> {
                 return intValue
             case .double(let doubleValue):
                 return doubleValue
+            case .date(let dateValue):
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateStyle = DateFormatter.Style.long
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                let stringDate = dateFormatter.string(from: dateValue)
+                return stringDate
             }
         }
         

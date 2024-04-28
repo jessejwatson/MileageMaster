@@ -11,10 +11,18 @@ struct FullWidthButton: View {
     
     let text: String
     let action: () -> Void
+    let color: Color
     
     init(_ text: String, action: @escaping () -> Void) {
         self.text = text
         self.action = action
+        self.color = Colors.shared.accent
+    }
+    
+    init(_ text: String, color: Color, action: @escaping () -> Void) {
+        self.text = text
+        self.action = action
+        self.color = color
     }
     
     @State private var isPressed = false
@@ -23,7 +31,7 @@ struct FullWidthButton: View {
         Text(text)
             .frame(maxWidth: .infinity)
             .padding()
-            .background(isPressed ? Colors.shared.accent.opacity(0.8) : Colors.shared.accent)
+            .background(isPressed ? color.opacity(0.8) : color)
             .foregroundStyle(.white)
             .cornerRadius(8)
             .scaleEffect(isPressed ? 0.95 : 1)

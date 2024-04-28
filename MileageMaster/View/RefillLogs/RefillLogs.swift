@@ -9,24 +9,17 @@ import SwiftUI
 
 struct RefillLogs: View {
     
+    // State
     @EnvironmentObject var mileageMasterData: MileageMasterData
     
+    // Controllers
+    let entryController = EntryController()
+    
+    // Data
     @State private var carID: String? = nil
-    @State private var entries: [Entry] = []
     
+    // Show
     @State private var showNewRefill = false
-    
-    func filterEntries() -> [Entry] {
-        if mileageMasterData.entries != nil {
-            if carID != nil {
-                return mileageMasterData.entries!.filter { $0.car.id == carID }
-            } else {
-                return mileageMasterData.entries!
-            }
-        } else {
-            return []
-        }
-    }
     
     var body: some View {
         
@@ -40,12 +33,16 @@ struct RefillLogs: View {
                     
                     // --- List of Entries
                     
-                    List(entries.reversed(), id: \.id) { entry in
+                    List((
+                        carID != nil ?
+                        mileageMasterData.entries!.reversed().filter({ $0.car.id == carID }) :
+                        mileageMasterData.entries!.reversed()
+                    )) { entry in
                         EntryListItem(entry)
                     }
                     
                 }
-                .background(Color(UIColor.secondarySystemBackground))
+                .background(Colors.shared.background)
                 .navigationTitle("Refill Logs")
                 .toolbar {
                     ToolbarItemGroup(placement: .topBarTrailing) {
@@ -59,32 +56,21 @@ struct RefillLogs: View {
                             }
                         }
                         .pickerStyle(.menu)
-                        .onChange(of: carID) { newValue, initialValue in
-                            entries = filterEntries()
-                        }
                         
                         // --- Add Refill Log Button
+                        
                         AddButton(showSheet: $showNewRefill)
                         
                     }
                 }
             }
             .refreshable {
-                let entryController = EntryController()
                 entryController.loadEntries()
-                
-                entries = filterEntries()
-            }
-            .onAppear() {
-                if mileageMasterData.entries != nil {
-                    if carID != nil {
-                        entries = mileageMasterData.entries!.filter({ $0.car.id == carID })
-                    } else {
-                        entries = mileageMasterData.entries!
-                    }
-                }
             }
             .sheet(isPresented: $showNewRefill) {
+                
+                // --- New Refill Log Sheet
+                
                 NewRefillLog(preferedCarID: carID)
                     .onDisappear() {
                         showNewRefill = false

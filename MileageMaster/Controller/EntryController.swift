@@ -27,6 +27,9 @@ class EntryController {
                               name
                               plate
                               fuel
+                              year
+                              serviceIntervalKM
+                              serviceIntervalMonth
                             }
                           }
                         }
@@ -51,6 +54,9 @@ class EntryController {
                               name
                               plate
                               fuel
+                              year
+                              serviceIntervalKM
+                              serviceIntervalMonth
                             }
                           }
                         
@@ -85,6 +91,9 @@ class EntryController {
                               name
                               plate
                               fuel
+                              year
+                              serviceIntervalKM
+                              serviceIntervalMonth
                             }
                           }
                         }
@@ -211,6 +220,9 @@ class EntryController {
                               name
                               plate
                               fuel
+                              year
+                              serviceIntervalKM
+                              serviceIntervalMonth
                             }
                           }
                         

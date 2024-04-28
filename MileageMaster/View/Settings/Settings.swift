@@ -43,10 +43,24 @@ struct Settings: View {
                         
                         // --- Accent Color
                         
-                        ColorPicker("Accent Color", selection: $accentColor)
-                            .onChange(of: accentColor) { color, initial in
-                                Colors.shared.updateAccentColor(color)
+                        HStack {
+                            
+                            Text("Accent Color")
+                            
+                            Spacer()
+                            
+                            Button("Reset") {
+                                Colors.shared.resetAccentColor()
                             }
+                            .foregroundStyle(.accent)
+                            
+                            ColorPicker("", selection: $accentColor)
+                                .frame(maxWidth: 30)
+                                .onChange(of: accentColor) { color, initial in
+                                    Colors.shared.updateAccentColor(color)
+                                }
+                            
+                        }
                         
                         Section {
                             
