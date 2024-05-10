@@ -11,13 +11,11 @@ struct CarView: View {
     
     let car: Car
     
-    init(car: Car) {
-        self.car = car
-    }
+    @Environment(\.presentationMode) var presentationMode
     
     // Focus
     private enum Field: Int, Hashable {
-        case name, plate, fuel
+        case name, plate, fuel, year, serviceIntervalKM, serviceIntervalMonth
     }
     @FocusState private var focusedField: Field?
     
@@ -25,6 +23,9 @@ struct CarView: View {
     @State private var plate = ""
     @State private var name = ""
     @State private var fuel = ""
+    @State private var year = 0
+    @State private var serviceIntervalKM = 0
+    @State private var serviceIntervalMonth = 0
     
     // Edit Mode
     @State private var editMode = EditMode()
@@ -32,6 +33,9 @@ struct CarView: View {
         var plate = false
         var name = false
         var fuel = false
+        var year = false
+        var serviceIntervalKM = false
+        var serviceIntervalMonth = false
     }
     
     // Alert
@@ -109,6 +113,7 @@ struct CarView: View {
                             if updateCar != nil {
                                 carController.loadCars()
                                 editMode.name = false
+                                presentationMode.wrappedValue.dismiss()
                             } else {
                                 showAlert(title: "Something went wrong!", message: "There was an error editing your car. Please try again.")
                             }
@@ -188,6 +193,7 @@ struct CarView: View {
                             if updateCar != nil {
                                 carController.loadCars()
                                 editMode.plate = false
+                                presentationMode.wrappedValue.dismiss()
                             } else {
                                 showAlert(title: "Something went wrong!", message: "There was an error editing your car. Please try again.")
                             }
@@ -267,6 +273,7 @@ struct CarView: View {
                             if updateCar != nil {
                                 carController.loadCars()
                                 editMode.fuel = false
+                                presentationMode.wrappedValue.dismiss()
                             } else {
                                 showAlert(title: "Something went wrong!", message: "There was an error editing your car. Please try again.")
                             }
@@ -289,6 +296,274 @@ struct CarView: View {
                 editMode.fuel = true
                 focusedField = .fuel
             }
+            
+            // --- Year
+            
+            HStack {
+                
+                Icon(systemName: "calendar.circle.fill", iconColor: Color.red)
+                
+                Spacer()
+                
+                if editMode.year == false {
+                    
+                    // --- View Mode
+                    VStack {
+                        
+                        Text("Year")
+                            .font(.subheadline)
+                            .foregroundStyle(.gray)
+                            .fontWeight(.bold)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                        Text(String(car.year))
+                            .font(.title2)
+                            .lineLimit(1)
+                            .truncationMode(.tail)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                    }
+                    
+                } else {
+                    
+                    // --- Edit Mode
+                    
+                    TextField("Year", value: $year, format: .number)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .keyboardType(.numberPad)
+                        .focused($focusedField, equals: .year)
+                        .onAppear() {
+                            year = car.year
+                        }
+                    
+                    Spacer()
+                    
+                    Button {
+                        editMode.year = false
+                    } label: {
+                        Text("Cancel")
+                            .padding(4)
+                            .background(Color.gray.opacity(0.15))
+                            .cornerRadius(8)
+                    }
+                    
+                    Button {
+                        let carController = CarController()
+                        Task {
+                            let updateCar = await carController.updateCar(id: car.id, key: "year", value: .int(year))
+                            if updateCar != nil {
+                                carController.loadCars()
+                                editMode.year = false
+                                presentationMode.wrappedValue.dismiss()
+                            } else {
+                                showAlert(title: "Something went wrong!", message: "There was an error editing your car. Please try again.")
+                            }
+                        }
+                    } label: {
+                        Text("Save")
+                            .padding(4)
+                            .foregroundStyle(.white)
+                            .background(Color.blue)
+                            .cornerRadius(8)
+                    }
+                    
+                }
+            }
+            .padding()
+            .background(Color.gray.opacity(0.15))
+            .cornerRadius(12)
+            .padding([.leading, .trailing])
+            .onTapGesture {
+                editMode.year = true
+                focusedField = .year
+            }
+            
+            // --- Service Intervals
+            
+            Text("Service Interval")
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding([.top, .leading])
+                .font(.headline)
+            
+            HStack {
+                
+                // --- Service Interval Months
+                
+                HStack {
+                    
+                    Icon(systemName: "calendar.badge.clock", iconColor: Color.red)
+                    
+                    Spacer()
+                    
+                    if editMode.serviceIntervalMonth == false {
+                        
+                        // --- View Mode
+                        VStack {
+                            
+                            Text("Months")
+                                .font(.subheadline)
+                                .foregroundStyle(.gray)
+                                .fontWeight(.bold)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            
+                            Text(String(car.serviceIntervalMonth))
+                                .font(.title2)
+                                .lineLimit(1)
+                                .truncationMode(.tail)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            
+                        }
+                        
+                    } else {
+                        
+                        // --- Edit Mode
+                        
+                        VStack {
+                            
+                            TextField("Months", value: $serviceIntervalMonth, format: .number)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .keyboardType(.numberPad)
+                                .focused($focusedField, equals: .serviceIntervalMonth)
+                                .onAppear() {
+                                    serviceIntervalMonth = car.serviceIntervalMonth
+                                }
+                            
+                            Spacer()
+                            
+                            
+                            Button {
+                                editMode.serviceIntervalMonth = false
+                            } label: {
+                                Text("Cancel")
+                                    .padding(4)
+                                    .frame(maxWidth: .infinity)
+                                    .background(Color.gray.opacity(0.15))
+                                    .cornerRadius(8)
+                            }
+                            
+                            Button {
+                                let carController = CarController()
+                                Task {
+                                    let updateCar = await carController.updateCar(id: car.id, key: "serviceIntervalMonth", value: .int(serviceIntervalMonth))
+                                    if updateCar != nil {
+                                        carController.loadCars()
+                                        editMode.serviceIntervalMonth = false
+                                        presentationMode.wrappedValue.dismiss()
+                                    } else {
+                                        showAlert(title: "Something went wrong!", message: "There was an error editing your car. Please try again.")
+                                    }
+                                }
+                            } label: {
+                                Text("Save")
+                                    .padding(4)
+                                    .frame(maxWidth: .infinity)
+                                    .foregroundStyle(.white)
+                                    .background(Color.blue)
+                                    .cornerRadius(8)
+                            }
+                            
+                            
+                        }
+                        
+                    }
+                }
+                .padding()
+                .background(Color.gray.opacity(0.15))
+                .cornerRadius(12)
+                .onTapGesture {
+                    editMode.serviceIntervalMonth = true
+                    focusedField = .serviceIntervalMonth
+                }
+                
+                // --- Service Interval Kilometers
+                
+                HStack {
+                    
+                    Icon(systemName: "road.lanes", iconColor: Color.purple)
+                    
+                    Spacer()
+                    
+                    if editMode.serviceIntervalKM == false {
+                        
+                        // --- View Mode
+                        VStack {
+                            
+                            Text("Distance")
+                                .font(.subheadline)
+                                .foregroundStyle(.gray)
+                                .fontWeight(.bold)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            
+                            Text(String(car.serviceIntervalKM))
+                                .font(.title2)
+                                .lineLimit(1)
+                                .truncationMode(.tail)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            
+                        }
+                        
+                    } else {
+                        
+                        // --- Edit Mode
+                        
+                        VStack {
+                            
+                            TextField("Distance", value: $serviceIntervalKM, format: .number)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .keyboardType(.numberPad)
+                                .focused($focusedField, equals: .serviceIntervalKM)
+                                .onAppear() {
+                                    serviceIntervalKM = car.serviceIntervalKM
+                                }
+                            
+                            Spacer()
+                            
+                            
+                            Button {
+                                editMode.serviceIntervalKM = false
+                            } label: {
+                                Text("Cancel")
+                                    .padding(4)
+                                    .frame(maxWidth: .infinity)
+                                    .background(Color.gray.opacity(0.15))
+                                    .cornerRadius(8)
+                            }
+                            
+                            Button {
+                                let carController = CarController()
+                                Task {
+                                    let updateCar = await carController.updateCar(id: car.id, key: "serviceIntervalKM", value: .int(serviceIntervalKM))
+                                    if updateCar != nil {
+                                        carController.loadCars()
+                                        editMode.serviceIntervalKM = false
+                                        presentationMode.wrappedValue.dismiss()
+                                    } else {
+                                        showAlert(title: "Something went wrong!", message: "There was an error editing your car. Please try again.")
+                                    }
+                                }
+                            } label: {
+                                Text("Save")
+                                    .padding(4)
+                                    .frame(maxWidth: .infinity)
+                                    .foregroundStyle(.white)
+                                    .background(Color.blue)
+                                    .cornerRadius(8)
+                            }
+                            
+                        }
+                        
+                    }
+                }
+                .padding()
+                .background(Color.gray.opacity(0.15))
+                .cornerRadius(12)
+                .onTapGesture {
+                    editMode.serviceIntervalKM = true
+                    focusedField = .serviceIntervalKM
+                }
+                
+            }
+            .padding([.leading, .trailing])
             
             Spacer()
             

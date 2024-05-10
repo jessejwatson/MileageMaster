@@ -12,6 +12,7 @@ struct Dashboard: View {
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var mileageMasterData: MileageMasterData
     
+    @State private var lastServiceTitle = "Last Service"
     @State private var showAddOptions = false
     @State private var showNewService = false
     @State private var showNewRefill = false
@@ -56,11 +57,11 @@ struct Dashboard: View {
                     
                     VStack {
                         
-                        // --- Last Service
+                        // --- Last Services
                         
                         LazyVStack(spacing: 0) {
                             
-                            Text("Last Service")
+                            Text(lastServiceTitle)
                                 .font(.headline)
                                 .fontWeight(.bold)
                                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -68,28 +69,43 @@ struct Dashboard: View {
                             
                             if mileageMasterData.services!.count > 0 {
                                 
-                                let lastService = mileageMasterData.services!.reversed()[0]
-                                
-                                ServiceListItem(lastService)
-                                    .padding([.leading, .trailing])
-                                    .padding([.top, .bottom], 4)
-                                
-                                Divider()
-                                
-                                HStack {
-                                    Text("Next Service:")
-                                        .font(.caption)
-                                        .fontWeight(.bold)
-                                        .foregroundStyle(Colors.shared.textSecondary)
-                                               
+                                ForEach(Array(mileageMasterData.cars!.enumerated()), id: \.element.id) { index, car in
                                     
-                                    Text(getServiceDue(lastService: lastService))
-                                        .font(.caption)
-                                        .foregroundStyle(Colors.shared.textSecondary)
+                                    if let lastService = mileageMasterData.services?.filter({ $0.car.id == car.id }).reversed().first {
+                                        
+                                        ServiceListItem(lastService)
+                                            .padding([.leading, .trailing])
+                                            .padding([.top, .bottom], 4)
+                                                                                
+                                        VStack {
+                                            Text("Next Service")
+                                                .font(.caption2)
+                                                .fontWeight(.bold)
+                                                .foregroundStyle(Colors.shared.textSecondary)
+                                                .frame(maxWidth: .infinity, alignment: .leading)
+                                                       
+                                            
+                                            Text(getServiceDue(lastService: lastService))
+                                                .font(.caption)
+                                                .foregroundStyle(Colors.shared.textSecondary)
+                                                .frame(maxWidth: .infinity, alignment: .leading)
+                                        }
+                                        .padding([.leading, .trailing])
+                                        
+                                        let carsWithService = mileageMasterData.services?.compactMap { service in
+                                            mileageMasterData.cars?.first(where: { $0.id == service.car.id })
+                                        } ?? []
+                                        if index != carsWithService.reversed().count - 1 {
+                                            Divider()
+                                                .padding([.top, .bottom])
+                                                .onAppear() {
+                                                    lastServiceTitle = "Recent Services"
+                                                }
+                                        }
+                                        
+                                    }
                                     
-                                    Spacer()
                                 }
-                                .padding([.leading, .top, .trailing])
                                 
                             } else {
                                 Text("You have no services yet.")
@@ -119,10 +135,6 @@ struct Dashboard: View {
                                 EntryListItem(entry)
                                     .padding([.leading, .trailing])
                                     .padding([.top, .bottom], 4)
-                                
-                                /*if index != mileageMasterData.entries!.reversed().prefix(2).count - 1 {
-                                    Divider()
-                                }*/
                                 
                             }
                             

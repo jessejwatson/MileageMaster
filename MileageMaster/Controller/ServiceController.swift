@@ -52,10 +52,16 @@ class ServiceController {
     private let DELETE_MANY_SERVICES =
                             """
                             mutation DeleteManyServices($id: ID) {
-                              deleteManyServicesConnection(where: {car: $id}) {
+                              deleteManyServicesConnection(where: {car: {id: $id}}) {
                                 edges {
                                   node {
                                     id
+                                    createdAt
+                                    date
+                                    odo
+                                    totalPrice
+                                    oil
+                                    notes
                                   }
                                 }
                               }
@@ -123,7 +129,7 @@ class ServiceController {
     }
     
     @discardableResult
-    func deleteManyServices(id: String) async -> [SmallService] {
+    func deleteManyServices(id: String) async -> [Node<SmallService>] {
         let graphQLRequest = GraphQLRequest<GraphQLResponse<DeleteManyServicesConnection>>(query: DELETE_MANY_SERVICES, variables: [(key: "id", value: .string(id))])
         do {
             let response = try await graphQLRequest.run()
@@ -150,6 +156,90 @@ class ServiceController {
             print("Failure creating serice: \(error.localizedDescription)\n\(error)")
             return nil
         }
+    }
+    
+    enum UpdateServiceValue {
+        case string(String)
+        case optionalString(String?)
+        case bool(Bool)
+        case int(Int)
+        case double(Double)
+        case date(Date)
+    }
+    
+    func updateService(id: String, key: String, value: UpdateServiceValue) async -> Service? {
+        
+        var formattedValue = ""
+        
+        switch value {
+        case .string(let stringValue):
+            formattedValue = "\"\(stringValue)\""
+        case .optionalString(let stringOptionalValue):
+            if stringOptionalValue != nil {
+                formattedValue = "\"\(stringOptionalValue!)\""
+            } else {
+                formattedValue = "null"
+            }
+        case .bool(let boolValue):
+            formattedValue = "\(boolValue)"
+        case .int(let intValue):
+            formattedValue = "\(intValue)"
+        case .double(let doubleValue):
+            formattedValue = "\(doubleValue)"
+        case .date(let dateValue):
+            let outputFormatter = DateFormatter()
+            outputFormatter.dateFormat = "yyyy-MM-dd"
+            let dateString = outputFormatter.string(from: dateValue)
+            formattedValue = "\"\(dateString)\""
+        }
+        
+        let UPDATE_SERVICE =
+                        """
+                        mutation UpdateService($id: ID) {
+                          updateService(where: {id: $id}, data: {\(key): \(formattedValue)}) {
+                            id
+                            createdAt
+                            date
+                            odo
+                            totalPrice
+                            oil
+                            notes
+                            car {
+                              id
+                              name
+                              plate
+                              fuel
+                              year
+                              serviceIntervalKM
+                              serviceIntervalMonth
+                            }
+                          }
+                        
+                          publishManyServicesConnection(
+                            to: PUBLISHED
+                            last: 100
+                            where: {id: $id}
+                          ) {
+                            edges {
+                              node {
+                                id
+                              }
+                            }
+                          }
+                        }
+                        """
+        
+        let graphQLRequest = GraphQLRequest<GraphQLResponse<UpdateService>>(query: UPDATE_SERVICE, variables: [
+            (key: "id", value: .string(id))
+        ])
+        do {
+            let response = try await graphQLRequest.run()
+            return response.data.updateService
+        } catch {
+            print("Failure updating service: \(error.localizedDescription)\n\(error)")
+            return nil
+        }
+        
     }
     
     func loadServices() {

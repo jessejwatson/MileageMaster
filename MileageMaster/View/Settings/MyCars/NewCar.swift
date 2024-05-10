@@ -10,6 +10,7 @@ import SwiftUI
 struct NewCar: View {
     
     @EnvironmentObject var mileageMasterData: MileageMasterData
+    @Environment(\.presentationMode) var presentationMode
     
     private var preferedCarID: String?
     
@@ -25,6 +26,9 @@ struct NewCar: View {
     @State private var name: String = ""
     @State private var plate: String = ""
     @State private var fuel: String = ""
+    @State private var year: Int? = nil
+    @State private var serviceIntervalKM: Int? = nil
+    @State private var serviceIntervalMonth: Int? = nil
     
     // Alert
     @State private var alertTitle = ""
@@ -69,6 +73,25 @@ struct NewCar: View {
                         .padding()
                         .frame(width: 300)
                     
+                    TextField("Year", value: $year, format: .number)
+                        .keyboardType(.numberPad)
+                        .padding()
+                        .frame(width: 300)
+                    
+                    Section(header: Text("Service Interval")) {
+                        
+                        TextField("Months", value: $serviceIntervalMonth, format: .number)
+                            .keyboardType(.numberPad)
+                            .padding()
+                            .frame(width: 300)
+                        
+                        TextField("Distance", value: $serviceIntervalKM, format: .number)
+                            .keyboardType(.numberPad)
+                            .padding()
+                            .frame(width: 300)
+                        
+                    }
+                    
                     
                 }
                 .scrollContentBackground(.hidden)
@@ -77,12 +100,15 @@ struct NewCar: View {
                 FullWidthButton("Create") {
                     if  name.count > 0 &&
                             plate.count > 0 &&
-                            fuel.count > 0
+                            fuel.count > 0 &&
+                            year != nil &&
+                            serviceIntervalKM != nil &&
+                            serviceIntervalMonth != nil
                     {
                         
                         let carController = CarController()
                         Task {
-                            let createdCar = await carController.createCar(name: name, plate: plate, fuel: fuel, year: 2000, serviceIntervalKM: 5000, serviceIntervalMonth: 12)
+                            let createdCar = await carController.createCar(name: name, plate: plate, fuel: fuel, year: year!, serviceIntervalKM: serviceIntervalKM!, serviceIntervalMonth: serviceIntervalMonth!)
                             if createdCar == nil {
                                 showAlert(title: "Unknown Error", message: "There was an error. Please try again.")
                             } else {
@@ -102,16 +128,23 @@ struct NewCar: View {
                 
             } else {
                 VStack {
+                    
                     Image(systemName: "checkmark.circle.fill")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 80, height: 80)
                         .foregroundStyle(Colors.shared.accent)
                         .padding(.bottom)
+                    
                     Text("Car Creation Successful!")
                         .font(.largeTitle)
                         .multilineTextAlignment(.center)
                         .opacity(successOpacity)
+                    
+                    FullWidthButton("Done") {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                    .padding()
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .ignoresSafeArea()

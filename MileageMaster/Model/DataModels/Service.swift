@@ -20,7 +20,7 @@ struct Service: Codable, Identifiable {
 
 struct SmallService: Codable, Identifiable {
     let id: String
-    let createAt: String
+    let createdAt: String
     let date: String
     let odo: Int
     let totalPrice: Double?
@@ -42,4 +42,8 @@ struct DeleteService: Codable {
 
 struct DeleteManyServicesConnection: Codable {
     let deleteManyServicesConnection: Edges<SmallService>
+}
+
+struct UpdateService: Codable {
+    let updateService: Service
 }

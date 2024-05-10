@@ -8,7 +8,7 @@
 import Foundation
 
 struct Edges<T: Codable>: Codable {
-    let edges: [T]
+    let edges: [Node<T>]
 }
 
 struct Node<T: Codable>: Codable {

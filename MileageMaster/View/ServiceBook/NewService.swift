@@ -222,7 +222,7 @@ struct NewService: View {
                         .foregroundStyle(Colors.shared.accent)
                         .padding(.bottom)
                     
-                    Text("Refill Log Creation Successful!")
+                    Text("Service Creation Successful!")
                         .font(.largeTitle)
                         .multilineTextAlignment(.center)
                         .opacity(successOpacity)

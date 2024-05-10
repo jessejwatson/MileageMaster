@@ -93,6 +93,28 @@ struct MyCars: View {
                                     Spacer()
                                 }
                                 
+                                HStack {
+                                    Image(systemName: "calendar.circle.fill")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 15, height: 15)
+                                        .foregroundStyle(.red)
+                                        .padding([.leading, .trailing], 4)
+                                        .frame(alignment: .leading)
+                                    Text(String(car.year))
+                                        .font(.subheadline)
+                                        .foregroundStyle(.gray)
+                                    Spacer()
+                                }
+                                
+                                HStack {
+                                    Text("Service every \(car.serviceIntervalMonth) \(car.serviceIntervalMonth > 1 ? "months" : "month") or \(car.serviceIntervalKM) \(car.serviceIntervalKM > 1 ? "kilometers" : "kilometer")")
+                                        .font(.subheadline)
+                                        .foregroundStyle(.gray)
+                                        .padding([.leading, .trailing], 4)
+                                    Spacer()
+                                }
+                                
                             }
                             .frame(maxWidth: .infinity)
                             
@@ -155,6 +177,9 @@ struct MyCars: View {
         }
         .sheet(isPresented: $showNewCarSheet) {
             NewCar()
+                .onDisappear() {
+                    showNewCarSheet = false
+                }
         }
         .alert(isPresented: $showAlert) {
             Alert(

@@ -44,7 +44,7 @@ class CarController {
                         """
                         mutation CreateCar($email: String!, $name: String!, $plate: String!, $fuel: String!, $year: Int!, $serviceIntervalKM: Int!, $serviceIntervalMonth: Int!) {
                           createCar(
-                            data: {name: $name, plate: $plate, fuel: $fuel, serviceIntervalKM: $serviceIntervalKM, serviceIntervalMonth: $serviceIntervalMonth, accounts: {connect: {email: $email}}}
+                            data: {name: $name, plate: $plate, fuel: $fuel, year: $year, serviceIntervalKM: $serviceIntervalKM, serviceIntervalMonth: $serviceIntervalMonth, accounts: {connect: {email: $email}}}
                           ) {
                             id
                             name
@@ -82,6 +82,7 @@ class CarController {
                             plate
                             name
                             fuel
+                            year
                             serviceIntervalKM
                             serviceIntervalMonth
                           }
@@ -168,6 +169,7 @@ class CarController {
                             plate
                             name
                             fuel
+                            year
                             serviceIntervalKM
                             serviceIntervalMonth
                           }

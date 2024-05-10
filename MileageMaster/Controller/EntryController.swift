@@ -102,13 +102,12 @@ class EntryController {
     private let DELETE_MANY_ENTRIES =
                         """
                         mutation DeleteManyEntries($id: ID) {
-                          deleteManyEntriesConnection(where: {car: $id}) {
+                          deleteManyEntriesConnection(where: {car: {id: $id}}) {
                             edges {
                               node {
                                 id
                                 createdAt
                                 odoCurr
-                                odoPrev
                                 liters
                                 totalPrice
                                 station
@@ -163,7 +162,7 @@ class EntryController {
     }
     
     @discardableResult
-    func deleteManyEntries(id: String) async -> [SmallEntry] {
+    func deleteManyEntries(id: String) async -> [Node<SmallEntry>] {
         let graphQLRequest = GraphQLRequest<GraphQLResponse<DeleteManyEntriesConnection>>(query: DELETE_MANY_ENTRIES, variables: [(key: "id", value: .string(id))])
         do {
             let response = try await graphQLRequest.run()
