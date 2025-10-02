@@ -49,7 +49,11 @@
 		DC8687CD2BDB71F800EC572F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8687CC2BDB71F800EC572F /* Colors.swift */; };
 		DC8687CF2BDB791400EC572F /* Color+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8687CE2BDB791400EC572F /* Color+EXT.swift */; };
 		DC8687D12BDB893D00EC572F /* FullWidthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8687D02BDB893D00EC572F /* FullWidthButton.swift */; };
+		DCA24E782C44D412001EDF3C /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA24E772C44D412001EDF3C /* Haptics.swift */; };
 		DCBE85242BCCE0BA00DC64E5 /* MileageMasterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBE85232BCCE0BA00DC64E5 /* MileageMasterData.swift */; };
+		DCC66D112C379A2100076313 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC66D102C379A2100076313 /* NetworkMonitor.swift */; };
+		DCC66D132C379A4700076313 /* NoNetworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC66D122C379A4700076313 /* NoNetworkView.swift */; };
+		DCC66D152C37A07D00076313 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC66D142C37A07D00076313 /* BlurView.swift */; };
 		DCD145372BD76F390030772C /* GraphQLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD145362BD76F390030772C /* GraphQLResponse.swift */; };
 		DCD1DBC82BDDF9C4004E2418 /* Date+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD1DBC72BDDF9C4004E2418 /* Date+EXT.swift */; };
 		DCD75CE02BD0C47A007E137D /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD75CDF2BD0C47A007E137D /* Service.swift */; };
@@ -118,7 +122,11 @@
 		DC8687CC2BDB71F800EC572F /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		DC8687CE2BDB791400EC572F /* Color+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+EXT.swift"; sourceTree = "<group>"; };
 		DC8687D02BDB893D00EC572F /* FullWidthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullWidthButton.swift; sourceTree = "<group>"; };
+		DCA24E772C44D412001EDF3C /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
 		DCBE85232BCCE0BA00DC64E5 /* MileageMasterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileageMasterData.swift; sourceTree = "<group>"; };
+		DCC66D102C379A2100076313 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		DCC66D122C379A4700076313 /* NoNetworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoNetworkView.swift; sourceTree = "<group>"; };
+		DCC66D142C37A07D00076313 /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		DCD145362BD76F390030772C /* GraphQLResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLResponse.swift; sourceTree = "<group>"; };
 		DCD1DBC72BDDF9C4004E2418 /* Date+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+EXT.swift"; sourceTree = "<group>"; };
 		DCD75CDF2BD0C47A007E137D /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
@@ -239,6 +247,7 @@
 		DC78B59B2B9BBF1100A8D964 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				DCC66D0F2C379A1500076313 /* Utilities */,
 				DC8687BE2BDB07BE00EC572F /* Helpers */,
 				DC8687BB2BDB06D500EC572F /* Extensions */,
 				DC43B9632BCD091E00F0145D /* CarController.swift */,
@@ -319,8 +328,19 @@
 				DC78B5AE2B9C3EBD00A8D964 /* ChartContainer.swift */,
 				DCD9A2332BCE1B44000DBBED /* OpenViewBtn.swift */,
 				DC63C4E62BDCE15400B5DB4C /* IconWithValue.swift */,
+				DCC66D122C379A4700076313 /* NoNetworkView.swift */,
+				DCC66D142C37A07D00076313 /* BlurView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		DCC66D0F2C379A1500076313 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				DCC66D102C379A2100076313 /* NetworkMonitor.swift */,
+				DCA24E772C44D412001EDF3C /* Haptics.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		DCD97F542BA2895B002DAFE5 /* MyCars */ = {
@@ -413,7 +433,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					DC78B56B2B9BBEB400A8D964 = {
 						CreatedOnToolsVersion = 15.0.1;
@@ -440,6 +460,7 @@
 			packageReferences = (
 				DC65C32F2BCA6746001990F9 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				DC8687B02BDAFE8700EC572F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				DC63087B2C3644B500C92B9A /* XCRemoteSwiftPackageReference "abseil-cpp-binary" */,
 			);
 			productRefGroup = DC78B56D2B9BBEB400A8D964 /* Products */;
 			projectDirPath = "";
@@ -490,16 +511,19 @@
 				DC78B5A52B9BC59300A8D964 /* Dashboard.swift in Sources */,
 				DC63C4E12BDCD67200B5DB4C /* ServiceListItem.swift in Sources */,
 				DC8687C22BDB10DD00EC572F /* AccountController.swift in Sources */,
+				DCA24E782C44D412001EDF3C /* Haptics.swift in Sources */,
 				DC63C4E32BDCDFD100B5DB4C /* NewService.swift in Sources */,
 				DC43B9682BCD1A1F00F0145D /* Loader.swift in Sources */,
 				DCD97F562BA28979002DAFE5 /* MyCars.swift in Sources */,
 				DC78B5702B9BBEB400A8D964 /* MileageMasterApp.swift in Sources */,
 				DCD145372BD76F390030772C /* GraphQLResponse.swift in Sources */,
 				DC8687C92BDB30C900EC572F /* AddButton.swift in Sources */,
+				DCC66D112C379A2100076313 /* NetworkMonitor.swift in Sources */,
 				DCD97F5A2BA28C74002DAFE5 /* CarView.swift in Sources */,
 				DC7539F52BD20B89002A0277 /* NewRefillLog.swift in Sources */,
 				DC2A9DBF2BA050AE0018563A /* Account.swift in Sources */,
 				DC78B5AD2B9C02AD00A8D964 /* LineGraph.swift in Sources */,
+				DCC66D132C379A4700076313 /* NoNetworkView.swift in Sources */,
 				DC43B9662BCD143D00F0145D /* EntryController.swift in Sources */,
 				DC8687BD2BDB06EE00EC572F /* UIApplication+EXT.swift in Sources */,
 				DCFAE94C2BD7590700E69A67 /* GraphQLRequest.swift in Sources */,
@@ -507,6 +531,7 @@
 				DC63C4E72BDCE15400B5DB4C /* IconWithValue.swift in Sources */,
 				DC2A9DC12BA053B50018563A /* Entry.swift in Sources */,
 				DC8687C72BDB305E00EC572F /* NewCar.swift in Sources */,
+				DCC66D152C37A07D00076313 /* BlurView.swift in Sources */,
 				DCD75CE02BD0C47A007E137D /* Service.swift in Sources */,
 				DC78B5AF2B9C3EBD00A8D964 /* ChartContainer.swift in Sources */,
 				DCD1DBC82BDDF9C4004E2418 /* Date+EXT.swift in Sources */,
@@ -742,7 +767,6 @@
 		DC78B5942B9BBEB600A8D964 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -762,7 +786,6 @@
 		DC78B5952B9BBEB600A8D964 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -782,7 +805,6 @@
 		DC78B5972B9BBEB600A8D964 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z5ZBL6VG32;
@@ -800,7 +822,6 @@
 		DC78B5982B9BBEB600A8D964 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z5ZBL6VG32;
@@ -857,6 +878,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		DC63087B2C3644B500C92B9A /* XCRemoteSwiftPackageReference "abseil-cpp-binary" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/abseil-cpp-binary.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2024011601.1;
+			};
+		};
 		DC65C32F2BCA6746001990F9 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";

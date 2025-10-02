@@ -13,54 +13,71 @@ struct Main: View {
     
     @EnvironmentObject var mileageMasterData: MileageMasterData
     @ObservedObject var colors = Colors.shared
-        
-    func hapticFeedback() {
-        let generator = UIImpactFeedbackGenerator(style: .light)
-        generator.prepare()
-        generator.impactOccurred()
-    }
+    
+    @StateObject private var networkMonitor = NetworkMonitor()
+    @State private var showNoConnection = false
     
     var body: some View {
         
         if mileageMasterData.account == nil || mileageMasterData.cars == nil || mileageMasterData.entries == nil || mileageMasterData.services == nil {
             Loader("Loading data...")
         } else {
-            TabView {
-                Dashboard()
-                    .tabItem {
-                        Label("Dashboard", systemImage: "gauge.open.with.lines.needle.33percent")
-                    }
-                    .onAppear {
-                        hapticFeedback()
-                    }
+            ZStack {
                 
-                ServiceBook()
-                    .tabItem {
-                        Label("Service Book", systemImage: "book.pages")
-                    }
-                    .onAppear {
-                        hapticFeedback()
-                    }
+                TabView {
+                    Dashboard()
+                        .tabItem {
+                            Label("Dashboard", systemImage: "gauge.open.with.lines.needle.33percent")
+                        }
+                        .onAppear {
+                            Haptics.shared.haptic(.light)
+                        }
+                    
+                    ServiceBook()
+                        .tabItem {
+                            Label("Service Book", systemImage: "book.pages")
+                        }
+                        .onAppear {
+                            Haptics.shared.haptic(.light)
+                        }
+                    
+                    RefillLogs()
+                        .tabItem {
+                            Label("Refill Logs", systemImage: "fuelpump")
+                        }
+                        .onAppear {
+                            Haptics.shared.haptic(.light)
+                        }
+                    
+                    Settings(showSignInView: $showSignInView)
+                        .tabItem {
+                            Label("Settings", systemImage: "gear")
+                        }
+                        .onAppear {
+                            Haptics.shared.haptic(.light)
+                        }
+                }
+                .tint(colors.accent)
+                .background(Colors.shared.background)
                 
-                RefillLogs()
-                    .tabItem {
-                        Label("Refill Logs", systemImage: "fuelpump")
+                VStack {
+                    Spacer()
+                    
+                    if showNoConnection {
+                        NoNetworkView()
+                            .transition(.move(edge: .top).combined(with: .opacity))
+                            .animation(.easeInOut, value: showNoConnection)
+                            .padding(.bottom, 60)
                     }
-                    .onAppear {
-                        hapticFeedback()
-                    }
+                }
                 
-                Settings(showSignInView: $showSignInView)
-                    .tabItem {
-                        Label("Settings", systemImage: "gear")
-                    }
-                    .onAppear {
-                        hapticFeedback()
-                    }
             }
-            .tint(colors.accent)
-            .background(Colors.shared.background)
+            .onChange(of: networkMonitor.isConnected) { _, _ in
+                withAnimation(.easeInOut(duration: 0.5)) {
+                    showNoConnection = !networkMonitor.isConnected
+                }
+            }
         }
-
+        
     }
 }

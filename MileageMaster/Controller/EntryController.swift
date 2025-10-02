@@ -15,6 +15,7 @@ class EntryController {
                         query GetEntries($email: String) {
                           entries(first: 10000, where: {car: {accounts_some: {email: $email}}}) {
                             id
+                            date
                             createdAt
                             odoCurr
                             odoPrev
@@ -37,11 +38,12 @@ class EntryController {
     
     private let CREATE_ENTRY =
                         """
-                        mutation CreateEntry($odoCurr: Int!, $odoPrev: Int!, $liters: Float!, $totalPrice: Float!, $station: String, $notes: String, $carID: ID) {
+                        mutation CreateEntry($date: Date!, $odoCurr: Int!, $odoPrev: Int!, $liters: Float!, $totalPrice: Float!, $station: String, $notes: String, $carID: ID) {
                           createEntry(
-                            data: {odoCurr: $odoCurr, odoPrev: $odoPrev, liters: $liters, totalPrice: $totalPrice, station: $station, notes: $notes, car: {connect: {id: $carID}}}
+                            data: {date: $date, odoCurr: $odoCurr, odoPrev: $odoPrev, liters: $liters, totalPrice: $totalPrice, station: $station, notes: $notes, car: {connect: {id: $carID}}}
                           ) {
                             id
+                            date
                             createdAt
                             odoCurr
                             odoPrev
@@ -129,8 +131,9 @@ class EntryController {
         }
     }
     
-    func createEntry(odoCurr: Int, odoPrev: Int, liters: Double, totalPrice: Double, station: String, notes: String?, carID: String) async -> Entry? {
+    func createEntry(date: Date, odoCurr: Int, odoPrev: Int, liters: Double, totalPrice: Double, station: String, notes: String?, carID: String) async -> Entry? {
         let graphQLRequest = GraphQLRequest<GraphQLResponse<CreateEntry>>(query: CREATE_ENTRY, variables: [
+            (key: "date", value: .date(date)),
             (key: "odoCurr", value: .int(odoCurr)),
             (key: "odoPrev", value: .int(odoPrev)),
             (key: "liters", value: .double(liters)),
@@ -179,6 +182,7 @@ class EntryController {
         case bool(Bool)
         case int(Int)
         case double(Double)
+        case date(Date)
     }
     
     func updateEntry(id: String, key: String, value: UpdateEntryValue) async -> Entry? {
@@ -186,20 +190,30 @@ class EntryController {
         var formattedValue = ""
         
         switch value {
-        case .string(let stringValue):
-            formattedValue = "\"\(stringValue)\""
-        case .optionalString(let stringOptionalValue):
-            if stringOptionalValue != nil {
-                formattedValue = "\"\(stringOptionalValue!)\""
-            } else {
-                formattedValue = "null"
-            }
-        case .bool(let boolValue):
-            formattedValue = "\(boolValue)"
-        case .int(let intValue):
-            formattedValue = "\(intValue)"
-        case .double(let doubleValue):
-            formattedValue = "\(doubleValue)"
+            
+            case .string(let stringValue):
+                formattedValue = "\"\(stringValue)\""
+            
+            case .optionalString(let stringOptionalValue):
+                if stringOptionalValue != nil {
+                    formattedValue = "\"\(stringOptionalValue!)\""
+                } else {
+                    formattedValue = "null"
+                }
+            
+            case .bool(let boolValue):
+                formattedValue = "\(boolValue)"
+            
+            case .int(let intValue):
+                formattedValue = "\(intValue)"
+            
+            case .double(let doubleValue):
+                formattedValue = "\(doubleValue)"
+            
+            case .date(let date):
+                let isoFormatter = ISO8601DateFormatter()
+                formattedValue = "\"\(isoFormatter.string(from: date))\""
+            
         }
         
         let UPDATE_ENTRY =
@@ -207,6 +221,7 @@ class EntryController {
                         mutation UpdateEntry($id: ID) {
                           updateEntry(where: {id: $id}, data: {\(key): \(formattedValue)}) {
                             id
+                            date
                             createdAt
                             odoCurr
                             odoPrev

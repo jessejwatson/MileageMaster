@@ -9,6 +9,7 @@ import Foundation
 
 struct Entry: Codable, Identifiable {
     let id: String
+    let date: String
     let createdAt: String
     let odoPrev: Int
     let odoCurr: Int
@@ -21,6 +22,7 @@ struct Entry: Codable, Identifiable {
 
 struct SmallEntry: Codable, Identifiable {
     let id: String
+    let date: String
     let createdAt: String
     let odoPrev: Int
     let odoCurr: Int

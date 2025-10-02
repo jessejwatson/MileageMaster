@@ -10,24 +10,41 @@ import SwiftUI
 struct EntryView: View {
     
     let entry: Entry
+    var date: Date?
+    var createdAt: String?
     @State private var navigationTitle: String
     
     @discardableResult
     init(_ entry: Entry) {
         self.entry = entry
+        self.date = nil
+        self.createdAt = nil
         
-        let inputFormatter = DateFormatter()
-        inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSX"
-        inputFormatter.locale = Locale(identifier: "en_US_POSIX")
-        inputFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-        if let date = inputFormatter.date(from: entry.createdAt) {
+        let inputFormatter_date = DateFormatter()
+        inputFormatter_date.dateFormat = "yyyy-MM-dd"
+        inputFormatter_date.locale = Locale(identifier: "en_US_POSIX")
+        inputFormatter_date.timeZone = TimeZone(secondsFromGMT: 0)
+        if let date = inputFormatter_date.date(from: entry.date) {
             let outputFormatter = DateFormatter()
             outputFormatter.dateFormat = "EEEE dd/MM/yyyy"
             
+            self.date = date
             self.navigationTitle = outputFormatter.string(from: date)
         } else {
             print("Error parsing date string")
             self.navigationTitle = "Log"
+        }
+        
+        let inputFormatter_createdAt = DateFormatter()
+        inputFormatter_createdAt.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSX"
+        inputFormatter_createdAt.locale = Locale(identifier: "en_US_POSIX")
+        inputFormatter_createdAt.timeZone = TimeZone(secondsFromGMT: 0)
+        if let createdAt = inputFormatter_createdAt.date(from: entry.createdAt) {
+            let outputFormatter = DateFormatter()
+            outputFormatter.dateFormat = "EEEE dd/MM/yyyy"
+            self.createdAt = outputFormatter.string(from: createdAt)
+        } else {
+            print("Error parsing createdAt string")
         }
     }
     
@@ -71,6 +88,10 @@ struct EntryView: View {
         showAlert = true
     }
     
+    // Date picker
+    @State private var showDatePicker: Bool = false
+    @State private var selectedDate: Date = Date()
+    
     var body: some View {
         
         ScrollView {
@@ -86,6 +107,7 @@ struct EntryView: View {
                 if editMode.odoPrev == false {
                     
                     // --- View Mode
+                    
                     VStack {
                         
                         Text("Previous Odometer")
@@ -564,11 +586,26 @@ struct EntryView: View {
             
             Spacer()
             
+            // --- Created At Date
+            if self.createdAt != nil {
+                Text("Created On: \(self.createdAt!)")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
         }
         .background(Colors.shared.background)
         .navigationTitle(navigationTitle)
         .toolbar {
             ToolbarItemGroup(placement: .topBarTrailing) {
+                    
+                // --- Edit Date Button
+                
+                Button {
+                    showDatePicker.toggle()
+                } label: {
+                    Image(systemName: "calendar")
+                        .foregroundStyle(.primary)
+                }
                 
                 // --- Delete Button
                 
@@ -619,6 +656,17 @@ struct EntryView: View {
             Button("Cancel", role: .cancel) {}
             
         }
+        .sheet(isPresented: $showDatePicker) {
+            
+            // --- Edit Date
+            
+            DatePickerView(selectedDate: $selectedDate, entryId: entry.id)
+                .onAppear() {
+                    if self.date != nil {
+                        selectedDate = self.date!
+                    }
+                }
+        }
         
     }
     
@@ -639,4 +687,116 @@ struct EntryView: View {
         
     }
     
+    private struct DatePickerView: View {
+        
+        @Environment(\.presentationMode) var presentationMode
+        @Binding var selectedDate: Date
+        var entryId: String
+        
+        // Loader
+        @State private var isLoading = false
+        
+        // Alert
+        @State private var alertTitle = ""
+        @State private var alertMessage = ""
+        @State private var showAlert = false
+        
+        private func showAlert(title: String, message: String) {
+            alertTitle = title
+            alertMessage = message
+            showAlert = true
+        }
+        
+        var body: some View {
+            
+            VStack {
+                
+                HStack {
+                    
+                    Text("Edit the Date")
+                        .font(.title.bold())
+                        .padding([.leading])
+                    
+                    Spacer()
+                    
+                }
+                
+                DatePicker(
+                    "Select a date:",
+                    selection: $selectedDate,
+                    displayedComponents: [.date]
+                )
+                .datePickerStyle(GraphicalDatePickerStyle())
+                .padding()
+                
+                HStack {
+                    
+                    Spacer()
+                    
+                    // --- Cancel Button
+                    
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Text("Cancel")
+                            .frame(maxWidth: .infinity)
+                            .padding([.top, .bottom], 4)
+                    }
+                    .buttonStyle(.bordered)
+                    
+                    Spacer()
+                    
+                    // --- Done Button
+
+                    Button(action: {
+                        isLoading = true
+                        
+                        let entryController = EntryController()
+                        Task {
+                            let updatedEntry = await entryController.updateEntry(id: entryId, key: "date", value: .date(selectedDate))
+                            if updatedEntry != nil {
+                                entryController.loadEntries()
+                                presentationMode.wrappedValue.dismiss()
+                            } else {
+                                showAlert(title: "Something went wrong!", message: "There was an error editing your refill log. Please try again.")
+                            }
+                            isLoading = false
+                        }
+                    }) {
+                        ZStack {
+                            if isLoading {
+                                ProgressView()
+                                    .progressViewStyle(.circular)
+                                    .tint(.white)
+                                    .frame(width: 20, height: 20)
+                            } else {
+                                Text("Done")
+                            }
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding([.top, .bottom], 4)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    
+                    Spacer()
+                    
+                }
+                .padding()
+            }
+            .alert(isPresented: $showAlert) {
+                
+                // --- Alert Popup
+                
+                Alert(
+                    title: Text(alertTitle),
+                    message: Text(alertMessage),
+                    dismissButton: .default(Text("Dismiss"))
+                )
+            }
+            
+        }
+        
+    }
+    
 }
+

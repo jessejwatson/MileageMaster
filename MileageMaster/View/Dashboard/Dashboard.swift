@@ -75,7 +75,6 @@ struct Dashboard: View {
                                         
                                         ServiceListItem(lastService)
                                             .padding([.leading, .trailing])
-                                            .padding([.top, .bottom], 4)
                                                                                 
                                         VStack {
                                             Text("Next Service")
@@ -91,18 +90,11 @@ struct Dashboard: View {
                                                 .frame(maxWidth: .infinity, alignment: .leading)
                                         }
                                         .padding([.leading, .trailing])
+                                        .padding(.top, 12)
                                         
                                         let carsWithService = mileageMasterData.services?.compactMap { service in
                                             mileageMasterData.cars?.first(where: { $0.id == service.car.id })
                                         } ?? []
-                                        if index != carsWithService.reversed().count - 1 {
-                                            Divider()
-                                                .padding([.top, .bottom])
-                                                .onAppear() {
-                                                    lastServiceTitle = "Recent Services"
-                                                }
-                                        }
-                                        
                                     }
                                     
                                 }
@@ -168,7 +160,7 @@ struct Dashboard: View {
                         AddButton(showSheet: $showAddOptions)
                     }
                 }
-                .padding([.leading, .trailing])
+                //.padding([.leading, .trailing])
                 .scrollIndicators(.hidden)
                 
             }

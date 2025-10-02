@@ -14,6 +14,7 @@ class Colors: ObservableObject {
     
     let background = Color.background
     let backgroundSecondary = Color.backgroundSecondary
+    let popoverBackground = Color.popoverBackground
     let text = Color.text
     let textSecondary = Color.textSecondary
     @Published var accent: Color

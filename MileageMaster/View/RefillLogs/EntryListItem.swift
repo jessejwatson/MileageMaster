@@ -10,20 +10,20 @@ import SwiftUI
 struct EntryListItem: View {
     
     let entry: Entry
-    private let createdAt: String?
+    private let date: String?
     
     init(_ entry: Entry) {
         self.entry = entry
         
         let inputFormatter = DateFormatter()
-        inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSX"
-        if let date = inputFormatter.date(from: entry.createdAt) {
+        inputFormatter.dateFormat = "yyyy-MM-dd"
+        if let date = inputFormatter.date(from: entry.date) {
             let outputFormatter = DateFormatter()
             outputFormatter.dateFormat = "EEEE dd/MM/yyyy"
-            self.createdAt = outputFormatter.string(from: date)
+            self.date = outputFormatter.string(from: date)
         } else {
             print("Error parsing date string")
-            self.createdAt = nil
+            self.date = nil
         }
     }
     
@@ -44,76 +44,72 @@ struct EntryListItem: View {
     var body: some View {
         NavigationLink(destination: EntryView(entry)) {
             
-            GeometryReader { geometry in
-                VStack {
+            VStack(alignment: .leading) {
                     
-                    Text(createdAt != nil ? String(entry.car.name + " on " + createdAt!) : entry.car.name)
-                        .font(.subheadline)
-                        .foregroundStyle(.gray)
-                        .fontWeight(.bold)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                Text(date != nil ? String(entry.car.name + " on " + date!) : entry.car.name)
+                    .font(.subheadline)
+                    .foregroundStyle(.gray)
+                    .fontWeight(.bold)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                HStack {
                     
-                    HStack {
+                    VStack {
                         
-                        VStack {
-                            
-                            // --- Total Price
-                            var totalPrice = String(entry.totalPrice)
-                            IconWithValue(systemName: "dollarsign.circle.fill", iconColor: Color.green, value: "$" + totalPrice)
-                                .onAppear() {
-                                    let numberFormatter = NumberFormatter()
-                                    numberFormatter.numberStyle = .decimal
-                                    let number = numberFormatter.string(from: NSNumber(value: entry.totalPrice))
-                                    if number != nil {
-                                        totalPrice = number!
-                                    }
+                        // --- Total Price
+                        var totalPrice = String(entry.totalPrice)
+                        IconWithValue(systemName: "dollarsign.circle.fill", iconColor: Color.green, value: "$" + totalPrice)
+                            .onAppear() {
+                                let numberFormatter = NumberFormatter()
+                                numberFormatter.numberStyle = .decimal
+                                let number = numberFormatter.string(from: NSNumber(value: entry.totalPrice))
+                                if number != nil {
+                                    totalPrice = number!
                                 }
-                            
-                            // --- Liters
-                            IconWithValue(systemName: "drop.fill", iconColor: Color.blue, value: String(entry.liters) + " l")
-                            
-                            // --- Distance
-                            IconWithValue(systemName: "road.lanes", iconColor: Color.purple, value: String(entry.odoCurr - entry.odoPrev) + " km")
-                            
-                        }
-                        .frame(width: geometry.size.width * 0.40)
+                            }
                         
-                        VStack {
-                            
-                            // --- Station
-                            IconWithValue(systemName: "mappin.circle.fill", iconColor: Color.red, value: entry.station)
-                            
-                            // --- Notes
-                            var notes = entry.notes ?? "No notes..."
-                            IconWithValue(systemName: "list.clipboard.fill", iconColor: Color.orange, value: notes, lineLimit: 2)
-                                .onAppear() {
-                                    if entry.notes != nil {
-                                        if entry.notes == "" {
-                                            notes = "No notes..."
-                                        }
-                                    }
-                                }
-                            
-                            Spacer()
-                            
-                        }
+                        // --- Liters
+                        IconWithValue(systemName: "drop.fill", iconColor: Color.blue, value: String(entry.liters) + " l")
+                        
+                        // --- Distance
+                        IconWithValue(systemName: "road.lanes", iconColor: Color.purple, value: String(entry.odoCurr - entry.odoPrev) + " km")
                         
                     }
-                    .swipeActions(edge: .trailing) {
+                    
+                    VStack {
                         
-                        // --- Swipe to Delete
+                        // --- Station
+                        IconWithValue(systemName: "mappin.circle.fill", iconColor: Color.red, value: entry.station)
                         
-                        Button() {
-                            showDeleteConfirmation = true
-                        } label: {
-                            Image(systemName: "trash")
-                        }
-                        .tint(.red)
+                        // --- Notes
+                        var notes = entry.notes ?? "No notes..."
+                        IconWithValue(systemName: "list.clipboard.fill", iconColor: Color.orange, value: notes, lineLimit: 2)
+                            .onAppear() {
+                                if entry.notes != nil {
+                                    if entry.notes == "" {
+                                        notes = "No notes..."
+                                    }
+                                }
+                            }
                         
                     }
+                    
                 }
+                .padding([.top, .bottom], 4)
+                .swipeActions(edge: .trailing) {
+                    
+                    // --- Swipe to Delete
+                    
+                    Button() {
+                        showDeleteConfirmation = true
+                    } label: {
+                        Image(systemName: "trash")
+                    }
+                    .tint(.red)
+                    
+                }
+                
             }
-            .frame(height: 90, alignment: .leading)
             .alert(isPresented: $showAlert) {
                 
                 // --- Alert Popup

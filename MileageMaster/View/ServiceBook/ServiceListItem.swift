@@ -44,69 +44,66 @@ struct ServiceListItem: View {
     var body: some View {
         NavigationLink(destination: ServiceView(service)) {
             
-            GeometryReader { geometry in
-                VStack {
+             VStack(alignment: .leading) {
+                 
+                Text(serviceDate != nil ? String(service.car.name + " on " + serviceDate!) : service.car.name)
+                    .font(.subheadline)
+                    .foregroundStyle(.gray)
+                    .fontWeight(.bold)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    Text(serviceDate != nil ? String(service.car.name + " on " + serviceDate!) : service.car.name)
-                        .font(.subheadline)
-                        .foregroundStyle(.gray)
-                        .fontWeight(.bold)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    HStack {
-                        
-                        VStack {
-                            
-                            // --- Odo
-                            IconWithValue(systemName: "gauge.open.with.lines.needle.33percent", iconColor: Colors.shared.accent, value: String(service.odo) + " km")
-                            
-                            // --- Total Price
-                            if service.totalPrice != nil {
-                                var totalPrice = String(service.totalPrice!)
-                                IconWithValue(systemName: "dollarsign.circle.fill", iconColor: Color.green, value: "$" + totalPrice)
-                                    .onAppear() {
-                                        let numberFormatter = NumberFormatter()
-                                        numberFormatter.numberStyle = .decimal
-                                        let number = numberFormatter.string(from: NSNumber(value: service.totalPrice!))
-                                        if number != nil {
-                                            totalPrice = number!
-                                        }
-                                    }
-                            } else {
-                                IconWithValue(systemName: "dollarsign.circle.fill", iconColor: Color.green, value: "--")
-                            }
-                                                        
-                        }
-                        .frame(width: geometry.size.width * 0.40)
-                        
-                        VStack {
-                            
-                            // --- Oil
-                            IconWithValue(systemName: "drop.fill", iconColor: Color.orange, value: service.oil ?? "--")
-                                                        
-                            // --- Notes
-                            IconWithValue(systemName: "list.clipboard.fill", iconColor: Color.orange, value: service.notes ?? "--")
-                                                        
-                        }
-                        
-                    }
-                    .swipeActions(edge: .trailing) {
-                        
-                        // --- Swipe to Delete
-                        
-                        Button() {
-                            showDeleteConfirmation = true
-                        } label: {
-                            Image(systemName: "trash")
-                        }
-                        .tint(.red)
-                        
-                    }
-                }
+                 HStack {
+                     
+                     VStack {
+
+                         // --- Odo
+                         IconWithValue(systemName: "gauge.open.with.lines.needle.33percent", iconColor: Colors.shared.accent, value: String(service.odo) + " km")
+
+                         // --- Total Price
+                         if service.totalPrice != nil {
+                             var totalPrice = String(service.totalPrice!)
+                             IconWithValue(systemName: "dollarsign.circle.fill", iconColor: Color.green, value: "$" + totalPrice)
+                                 .onAppear() {
+                                     let numberFormatter = NumberFormatter()
+                                     numberFormatter.numberStyle = .decimal
+                                     let number = numberFormatter.string(from: NSNumber(value: service.totalPrice!))
+                                     if number != nil {
+                                         totalPrice = number!
+                                     }
+                                 }
+                         } else {
+                             IconWithValue(systemName: "dollarsign.circle.fill", iconColor: Color.green, value: "--")
+                         }
+
+                     }
+
+                     VStack {
+
+                         // --- Oil
+                         IconWithValue(systemName: "drop.fill", iconColor: Color.orange, value: service.oil ?? "--")
+
+                         // --- Notes
+                         IconWithValue(systemName: "list.clipboard.fill", iconColor: Color.orange, value: service.notes ?? "--")
+
+                     }
+
+                 }
+                 .padding([.top, .bottom], 4)
+                 .swipeActions(edge: .trailing) {
+
+                     // --- Swipe to Delete
+
+                     Button() {
+                         showDeleteConfirmation = true
+                     } label: {
+                         Image(systemName: "trash")
+                     }
+                     .tint(.red)
+
+                 }
             }
-            .frame(height: 70, alignment: .leading)
             .alert(isPresented: $showAlert) {
-                
+
                 // --- Alert Popup
                 
                 Alert(
@@ -115,14 +112,11 @@ struct ServiceListItem: View {
                     dismissButton: .default(Text("Dismiss"))
                 )
                 
-            }
-            .confirmationDialog(
+            }.confirmationDialog(
                 "Are you sure you want to delete this log?",
                 isPresented: $showDeleteConfirmation,
                 titleVisibility: .visible
             ) {
-                
-                // --- Confirmation Dialog
                 
                 Button(role: .destructive) {
                     let serviceController = ServiceController()
@@ -143,8 +137,10 @@ struct ServiceListItem: View {
                 Button("Cancel", role: .cancel) {}
                 
             }
+            
         }
         .tint(Colors.shared.text)
+        
     }
     
 }

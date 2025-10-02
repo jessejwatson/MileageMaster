@@ -158,7 +158,7 @@ struct NewService: View {
                                 .keyboardType(.decimalPad)
                                 .frame(width: 300)
                             
-                            TextField("Total Price", value: $totalPrice, format: .currency(code: "$"))
+                            TextField("Total Price", value: $totalPrice, format: .currency(code: "AUD"))
                                 .padding()
                                 .keyboardType(.decimalPad)
                                 .frame(width: 300)
@@ -180,7 +180,7 @@ struct NewService: View {
                     }
                     .scrollIndicators(.hidden)
                     .scrollContentBackground(.hidden)
-                    .background(Colors.shared.background)
+                    .background(Colors.shared.popoverBackground)
                     
                     FullWidthButton("Create") {
                         if  odo != nil &&
@@ -239,12 +239,13 @@ struct NewService: View {
                     withAnimation(.easeIn(duration: 1)) {
                         successOpacity = 1.0
                     }
+                    Haptics.shared.success()
                 }
             }
             
         }
         .padding()
-        .background(Colors.shared.background)
+        .background(Colors.shared.popoverBackground)
         .onAppear() {
             carID = preferedCarID
             

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct NewRefillLog: View {
     
@@ -22,6 +23,7 @@ struct NewRefillLog: View {
         self.preferedCarID = preferedCarID
     }
     
+    @State private var date: Date = Date()
     @State private var carID: String? = nil
     @State private var odoCurr: Int? = nil
     @State private var odoPrev: Int? = nil
@@ -135,6 +137,11 @@ struct NewRefillLog: View {
                             
                         }
                         
+                        Section(header: Text("Date")) {
+                            
+                            DatePicker("Date", selection: $date, displayedComponents: .date)
+                            
+                        }
                         
                         Section(header: Text("Odometer")) {
                             
@@ -157,7 +164,7 @@ struct NewRefillLog: View {
                                 .keyboardType(.decimalPad)
                                 .frame(width: 300)
                             
-                            TextField("Total Price", value: $totalPrice, format: .currency(code: "$"))
+                            TextField("Total Price", value: $totalPrice, format: .currency(code: "AUD"))
                                 .padding()
                                 .keyboardType(.decimalPad)
                                 .frame(width: 300)
@@ -179,7 +186,7 @@ struct NewRefillLog: View {
                     }
                     .scrollIndicators(.hidden)
                     .scrollContentBackground(.hidden)
-                    .background(Colors.shared.background)
+                    .background(Colors.shared.popoverBackground)
                     
                     FullWidthButton("Create") {
                         if  odoCurr != nil &&
@@ -195,7 +202,7 @@ struct NewRefillLog: View {
                                 
                                 let entryController = EntryController()
                                 Task {
-                                    let createdEntry: Entry? = await entryController.createEntry(odoCurr: odoCurr!, odoPrev: odoPrev!, liters: liters!, totalPrice: totalPrice!, station: station, notes: notes, carID: carID!)
+                                    let createdEntry: Entry? = await entryController.createEntry(date: date, odoCurr: odoCurr!, odoPrev: odoPrev!, liters: liters!, totalPrice: totalPrice!, station: station, notes: notes, carID: carID!)
                                     if createdEntry == nil {
                                         showAlert(title: "Unknown Error", message: "There was an error. Please try again.")
                                     } else {
@@ -243,12 +250,13 @@ struct NewRefillLog: View {
                     withAnimation(.easeIn(duration: 1)) {
                         successOpacity = 1.0
                     }
+                    Haptics.shared.success()
                 }
             }
             
         }
         .padding()
-        .background(Colors.shared.background)
+        .background(Colors.shared.popoverBackground)
         .onAppear() {
             carID = preferedCarID
             

@@ -95,7 +95,7 @@ struct NewCar: View {
                     
                 }
                 .scrollContentBackground(.hidden)
-                .background(Colors.shared.background)
+                .background(Colors.shared.popoverBackground)
                 
                 FullWidthButton("Create") {
                     if  name.count > 0 &&
@@ -157,7 +157,7 @@ struct NewCar: View {
             
         }
         .padding()
-        .background(Colors.shared.background)
+        .background(Colors.shared.popoverBackground)
         .alert(isPresented: $showAlert) {
             Alert(
                 title: Text(alertTitle),
